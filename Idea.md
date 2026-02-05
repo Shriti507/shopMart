@@ -1,7 +1,7 @@
-# Project Name: ShopMart (Collaborative Group Shopping)
+# Project Name: ShopSmart (Collaborative Group Shopping)
 
 ## 1. Project Overview
-**ShopMart** is a shared e-commerce platform designed for students and communities. It transforms online shopping from a solitary activity into a collaborative experience. It allows multiple people to join a single **"Group Cart"** from their own devices, add items together in real-time, and automatically split the final bill.
+**ShopSmart** is a shared e-commerce platform designed for students and communities. It transforms online shopping from a solitary activity into a collaborative experience. It allows multiple people to join a single **"Group Cart"** from their own devices, add items together in real-time, and automatically split the final bill.
 
 It aims to make buying daily essentials together easier, cheaper, and faster than traditional e-commerce apps.
 
@@ -11,7 +11,7 @@ It aims to make buying daily essentials together easier, cheaper, and faster tha
 * **Missed Discounts:** Individual buyers often miss out on "Bulk Discounts" or "Wholesale Prices" that are only available for larger order volumes.
 
 ## 3. The Solution
-ShopMart solves these inefficiencies with a **Live Group Lobby**:
+ShopSmart solves these inefficiencies with a **Live Group Lobby**:
 
 * **Real-Time Collaboration:** One user creates a cart and shares a link. Friends join instantly and add their own items to the same cart.
 * **Live Updates:** When a friend adds an item, it appears on everyone's screen immediately (powered by **WebSockets**), eliminating the need to refresh.
