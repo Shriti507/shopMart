@@ -3,7 +3,8 @@ import { Document,Types } from "mongoose";
 export interface User{
     name: string;
     email:string
-    phoneNumber: string;
+    phoneNumber?: string;
+    password?: string;
     societyId?:Types.ObjectId;
     isOnline:boolean;
     googleId?:string;
