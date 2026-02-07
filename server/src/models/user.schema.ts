@@ -13,8 +13,13 @@ const userSchema=new Schema<UserDocument>({
     },
     phoneNumber:{
         type:String,
-        required:true,
+        sparse:true,
         unique:true
+    },
+    password:{
+        type:String,
+        select:false
+        
     },
     societyId:{
         type:Schema.Types.ObjectId,
@@ -29,7 +34,8 @@ const userSchema=new Schema<UserDocument>({
     },
     googleId:{
         type:String,
-        unique:true
+        unique:true,
+        sparse:true
     }
 })
 
