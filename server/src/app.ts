@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import registerUser from "./routes/authRoute";
 
 
 interface App_interface{
@@ -38,6 +39,7 @@ export default class App implements App_interface{
     }
 
     public initializeRoutes(): void{
+        this.app.use("/registerUser",registerUser.router)
         console.log('routes has been initialized.')
     }
 }
