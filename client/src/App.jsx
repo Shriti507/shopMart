@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Router, Routes } from 'react-router-dom' 
 import Home from './pages/Home'
-import Login from './pages/Login'
+// import Login from './pages/Login'
 
 
 
@@ -10,7 +10,7 @@ const App = () => {
     <>
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path="login" element={<Login/>}/>
+        {/* <Route path="login" element={<Login/>}/> */}
       
 
       </Routes>
