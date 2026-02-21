@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-import registerUser from "./routes/authRoute";
+import { authRouteInstance } from "./routes/authRoute";
 
 
 interface App_interface{
@@ -17,9 +17,9 @@ export default class App implements App_interface{
         this.PORT=3000;
         this.app=express()
         this.app.use(express.json())
-        this.startServer();
         this.connectDatabase();
         this.initializeRoutes();
+        this.startServer();
     }
 
     public startServer(): void {
@@ -39,7 +39,8 @@ export default class App implements App_interface{
     }
 
     public initializeRoutes(): void{
-        this.app.use("/registerUser",registerUser.router)
+        this.app.use("/", authRouteInstance.router);
+       
         console.log('routes has been initialized.')
     }
 }

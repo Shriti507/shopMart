@@ -24,3 +24,5 @@ export default class AuthRoute{
 
     
 }
+
+export const authRouteInstance = new AuthRoute();
