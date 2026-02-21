@@ -1,13 +1,46 @@
 import { userModel } from "../models/user.schema";
+import { societyModel } from "../models/society.schema";
 import { UserDocument,User } from "../utils/user.interface";
+import { SocietyDocument,Society } from "../utils/society.interface";
+import bcryptjs from 'bcryptjs';
 
 export class AuthService{
-    async getDetails(id:string){
+    async getUserDetails(id:string){
         return await userModel.findById(id)
 
     }
+    async getSocietyDetails(id:string){
+        return await societyModel.findById(id)
+    }
+
+    async createSociety(societyData:Society):Promise<SocietyDocument>{
+        const existingSociety=await societyModel.findOne({code:societyData.code})
+        if (existingSociety){
+            throw new Error ("A society with this code already exists.")
+        }
+        const newSociety = await societyModel.create(societyData)
+        console.log("society created.")
+        return newSociety
+    }
     async createUser(userData:User):Promise<UserDocument>{
-        const newUser=await userModel.create(userData)
+        const existingUser=await userModel.findOne({email: userData.email})
+        if (existingUser){
+            throw new Error ("This email is already registered.")
+        }
+        const salt=await bcryptjs.genSalt(10)
+        if (!userData.password) {
+            throw new Error("Password is required.");
+        }
+        const hashedPassword = await bcryptjs.hash(userData.password, salt);
+
+        // replace the raw password with the hashed one by copying all the data but it will overwrite the password
+
+        const secureUserData = {
+            ...userData,
+            password: hashedPassword 
+        };
+
+        const newUser=await userModel.create(secureUserData)
         console.log("user created.")
         return newUser
     }
