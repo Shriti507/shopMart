@@ -1,12 +1,16 @@
 import React from 'react'
-import Login from './Login'
+
 import Banner from '../components/home/Banner'
+import Footer from '../components/home/Footer'
+import Hero from '../components/home/Hero'
 
 const Home = () => {
   return (
     <div>
         
         <Banner/>
+        <Hero/>
+        <Footer/>
         
     </div>
   )
