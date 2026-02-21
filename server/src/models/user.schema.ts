@@ -11,6 +11,11 @@ const userSchema=new Schema<UserDocument>({
         required:true,
         unique:true
     },
+    role: { 
+        type: String, 
+        enum: ['Member', 'Admin'], 
+        default: 'Member' 
+    },
     phoneNumber:{
         type:String,
         sparse:true,
