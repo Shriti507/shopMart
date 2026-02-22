@@ -1,5 +1,7 @@
-import { Search,Heart, ShoppingBag, PhoneCall } from 'lucide-react';
+import { Search,ShoppingCart, CircleUserRound,PhoneCall } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+
 
 export default function Navigation() {
   return (
@@ -13,7 +15,7 @@ export default function Navigation() {
         </Link>
 
         {/* search bar */}
-        <div className="flex-grow max-w-2xl flex items-center border border-gray-300 rounded-full overflow-hidden bg-gray-50 focus-within:border-purple-600 transition-colors">
+        <div className="grow max-w-2xl flex items-center border border-gray-300 rounded-full overflow-hidden bg-gray-50 focus-within:border-purple-600 transition-colors">
           
           <input 
             type="text" 
@@ -27,6 +29,32 @@ export default function Navigation() {
             </div>
           </button>
         </div>
+
+        <div>
+            <Link 
+                to="/login" 
+                className="flex items-center gap-2 font-medium hover:text-[#45462A] transition cursor-pointer"
+                >
+            <CircleUserRound size={22}/>
+            <span>Login</span>
+            </Link>
+        </div>
+
+
+
+        <div>
+            <Link 
+                to="/cart" 
+                className="flex items-center gap-2 font-medium hover:text-[#45462A] transition cursor-pointer"
+                >
+            <ShoppingCart size={22}/>
+            <span>Cart</span>
+            </Link>
+        </div>
+
+
+
+        
 
      </div>
           
