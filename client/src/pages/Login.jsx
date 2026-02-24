@@ -49,7 +49,7 @@ const Login = () => {
                     <button type="submit" className="mt-8 w-full h-11 rounded-full text-white bg-[#310E10] hover:opacity-90 transition-opacity">
                         Login
                     </button>
-                    <p className="text-[#839490] text-sm mt-4">Don’t have an account? <a className="text-[#4c1f21] hover:underline" href="#">Sign up</a></p>
+                    <p className="text-[#839490] text-sm mt-4">Don’t have an account? <a className="text-[#4c1f21] hover:underline" href="/signUp">Sign up</a></p>
                 </form>
             </div>
         </div>
