@@ -4,6 +4,7 @@ import Footer from '../components/home/Footer'
 // import Hero from '../components/home/Hero'
 import Navigation from '../components/Navigation'
 
+
 const Home = () => {
   return (
     <div>
