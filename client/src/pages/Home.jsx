@@ -10,8 +10,18 @@ const Home = () => {
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
 
+  
+  // toggle this to false to test the normal homepage
+  const isAuthenticated = false;
+
   useEffect(() => {
-    // Check viewport width on mount
+    // if user is authenticated immediately redirect to user-dashboard
+    if (isAuthenticated) {
+      navigate('/user-dashboard', { replace: true });
+      return;
+    }
+
+    
     const checkViewport = () => {
       if (window.innerWidth < 768) {
         setIsMobile(true);
@@ -23,7 +33,7 @@ const Home = () => {
 
     checkViewport();
 
-    // Re-check on resize
+   
     window.addEventListener('resize', checkViewport);
     return () => window.removeEventListener('resize', checkViewport);
   }, [navigate]);

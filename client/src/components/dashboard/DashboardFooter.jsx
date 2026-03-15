@@ -6,7 +6,7 @@ import {
   ShieldCheck, Truck, RotateCcw, CreditCard
 } from 'lucide-react';
 
-const Footer = () => {
+const DashboardFooter = () => {
   return (
     <footer className="w-full bg-[#1b2316] text-gray-400 font-sans border-t border-white/5 pt-16">
       <div className="max-w-[1400px] mx-auto px-8 xl:px-12">
@@ -44,7 +44,7 @@ const Footer = () => {
           </div>
         </div>
 
-      
+        {/* Feature Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 pb-16 border-b border-white/5">
           <div className="flex items-center gap-5 group">
             <div className="w-14 h-14 rounded-2xl bg-[#212b1b] flex items-center justify-center text-[#dac889] group-hover:bg-[#dac889] group-hover:text-[#1b2316] transition-all duration-300 shadow-lg">
@@ -84,7 +84,7 @@ const Footer = () => {
           </div>
         </div>
 
-        
+        {/* Main Footer Links */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-3 mb-6 group">
@@ -164,7 +164,7 @@ const Footer = () => {
           </div>
         </div>
 
-       
+        
         <div className="py-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="text-sm font-medium">
             © {new Date().getFullYear()} <span className="text-white font-bold">ShopSmart</span> Inc. All rights reserved.
@@ -186,4 +186,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default DashboardFooter;
