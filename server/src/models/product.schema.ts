@@ -1,11 +1,11 @@
 import { Schema,model } from "mongoose";
-import { ProductDocument,Product } from "../utils/product.interface";
+import { ProductDocument,Product } from "../utils/product.interface.js";
 
 const productSchema=new Schema<ProductDocument>({
     productName:{
         type:String,
         required:true,
-        tirm:true
+        trim:true
     },
    
     category:{
