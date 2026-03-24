@@ -1,7 +1,7 @@
-import { userModel } from "../models/user.schema";
-import { societyModel } from "../models/society.schema";
-import { UserDocument,User } from "../utils/user.interface";
-import { SocietyDocument,Society } from "../utils/society.interface";
+import { userModel } from "../models/user.schema.js";
+import { societyModel } from "../models/society.schema.js";
+import { UserDocument,User } from "../utils/user.interface.js";
+import { SocietyDocument,Society } from "../utils/society.interface.js";
 import bcryptjs from 'bcryptjs';
 
 export class AuthService{

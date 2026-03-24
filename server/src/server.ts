@@ -1,5 +1,7 @@
-import 'dotenv/config';
+import "dotenv/config";
 
 import App from "./app.js";
 
-const app=new App()
+const app = new App();
+
+app.startServer();
