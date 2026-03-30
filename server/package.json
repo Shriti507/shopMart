@@ -6,10 +6,13 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "tsx src/server.ts",
+    "start": "node dist/server.js",
     "dev": "tsx watch src/server.ts",
     "test": "jest",
     "lint": "echo 'No linter configured yet'"
+  },
+  "engines": {
+    "node": ">=22"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
