@@ -1,6 +1,6 @@
 import React from 'react';
 import Navigation from '../components/Navigation';
-import DashboardFooter from '../components/dashboard/DashboardFooter';
+// import Footer from '../components/home/Footer';
 import { 
   Menu, Search, ChevronDown, 
   Carrot, Coffee, Beef, Snowflake, 
@@ -340,7 +340,7 @@ const UserDashboard = () => {
         </div>
       </div>
       
-      <DashboardFooter />
+      <Footer />
     </div>
   );
 };

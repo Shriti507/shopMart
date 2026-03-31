@@ -18,15 +18,13 @@ export default function Navigation() {
           </span>
         </Link>
 
-        {isHomePage && (
-          <nav className="hidden lg:flex items-center gap-10 text-[13px] font-bold tracking-widest uppercase">
-            <Link to="/" className="text-[#dac889] border-b-2 border-[#dac889] pb-1.5 transition-colors">Home</Link>
-            <Link to="/services" className="text-gray-500 hover:text-[#dac889] transition-colors">Services</Link>
-            <Link to="/about" className="text-gray-500 hover:text-[#dac889] transition-colors">About Us</Link>
-            <Link to="/categories" className="text-gray-500 hover:text-[#dac889] transition-colors">Categories</Link>
-            <Link to="/contact" className="text-gray-500 hover:text-[#dac889] transition-colors">Contact</Link>
-          </nav>
-        )}
+        <nav className="hidden lg:flex items-center gap-10 text-[13px] font-bold tracking-widest uppercase">
+          <Link to="/" className={`${location.pathname === '/' ? 'text-[#dac889] border-b-2 border-[#dac889] pb-1.5' : isHomePage ? 'text-gray-500 hover:text-[#dac889]' : 'text-gray-300 hover:text-[#dac889]'} transition-all`}>Home</Link>
+          <Link to="/services" className={`${location.pathname === '/services' ? 'text-[#dac889] border-b-2 border-[#dac889] pb-1.5' : isHomePage ? 'text-gray-500 hover:text-[#dac889]' : 'text-gray-300 hover:text-[#dac889]'} transition-all`}>Services</Link>
+          <Link to="/about" className={`${location.pathname === '/about' ? 'text-[#dac889] border-b-2 border-[#dac889] pb-1.5' : isHomePage ? 'text-gray-500 hover:text-[#dac889]' : 'text-gray-300 hover:text-[#dac889]'} transition-all`}>About Us</Link>
+          <Link to="/categories" className={`${location.pathname === '/categories' ? 'text-[#dac889] border-b-2 border-[#dac889] pb-1.5' : isHomePage ? 'text-gray-500 hover:text-[#dac889]' : 'text-gray-300 hover:text-[#dac889]'} transition-all`}>Categories</Link>
+          <Link to="/contact" className={`${location.pathname === '/contact' ? 'text-[#dac889] border-b-2 border-[#dac889] pb-1.5' : isHomePage ? 'text-gray-500 hover:text-[#dac889]' : 'text-gray-300 hover:text-[#dac889]'} transition-all`}>Contact</Link>
+        </nav>
 
 
         <div className="flex items-center gap-6">
