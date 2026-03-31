@@ -1,12 +1,10 @@
 import React from 'react';
-import Navigation from '../components/Navigation';
-import Footer from '../components/Footer';
 import { Target, Eye, Award, Users, ShieldCheck, Heart } from 'lucide-react';
 
 const About = () => {
   return (
     <div className="w-full bg-[#1b2316] min-h-screen text-gray-100 font-sans selection:bg-[#dac889] selection:text-[#1b2316]">
-      <Navigation />
+
 
       {/* Hero Section */}
       <section className="relative py-32 overflow-hidden border-b border-white/5">
@@ -84,7 +82,6 @@ const About = () => {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 };

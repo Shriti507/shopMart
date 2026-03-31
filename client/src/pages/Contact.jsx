@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Navigation from '../components/Navigation';
-import Footer from '../components/Footer';
 import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 
 const Contact = () => {
@@ -54,7 +52,7 @@ const Contact = () => {
 
   return (
     <div className="w-full bg-gradient-to-b from-[#1b2316] to-[#121a10] min-h-screen text-gray-100 font-sans selection:bg-[#D4AF37] selection:text-[#1b2316]">
-      <Navigation />
+
 
       <section className="relative py-32 overflow-hidden">
         <div className="max-w-[1100px] mx-auto px-8 relative z-10 flex flex-col items-center">
@@ -161,7 +159,6 @@ const Contact = () => {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 };
