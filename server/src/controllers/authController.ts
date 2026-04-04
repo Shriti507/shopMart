@@ -1,4 +1,3 @@
-import Express  from "express";
 import { Request,Response } from "express";
 import { AuthService } from "../services/authService.js";
 import jwt from 'jsonwebtoken';

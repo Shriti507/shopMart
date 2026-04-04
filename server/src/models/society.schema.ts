@@ -1,5 +1,5 @@
 import { Schema,model } from "mongoose";
-import { SocietyDocument,Society } from "../utils/society.interface.js";
+import { SocietyDocument } from "../utils/society.interface.js";
 
 const societySchema=new Schema<SocietyDocument>({
     name:{
