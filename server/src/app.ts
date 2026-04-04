@@ -71,6 +71,9 @@ export default class App implements App_interface {
 
   public initializeRoutes(): void {
     this.app.use("/", authRouteInstance.router);
+    this.app.get("/api/health", (req: express.Request, res: express.Response) => {
+      res.status(200).json({ status: "ok" });
+    });
     console.log("Routes initialized.");
   }
 

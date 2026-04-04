@@ -1,5 +1,6 @@
-name: Backend CI 
-on: 
+name: Backend CI
+
+on:
   push:
     paths:
       - 'server/**'
@@ -20,7 +21,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Use Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -28,12 +29,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Run linter
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
+
       - name: Build project
         run: npm run build
-
-     
-
-      
-
-
-
