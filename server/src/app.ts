@@ -25,8 +25,8 @@ export default class App implements App_interface {
     this.io = new Server(this.server, {
       cors: {
         origin: "*", // Adjust this for production security
-        methods: ["GET", "POST"]
-      }
+        methods: ["GET", "POST"],
+      },
     });
 
     this.initializeMiddleware();
@@ -43,7 +43,7 @@ export default class App implements App_interface {
 
   public get(
     path: string,
-    handler: (req: express.Request, res: express.Response) => void
+    handler: (req: express.Request, res: express.Response) => void,
   ): void {
     this.app.get(path, handler);
   }
@@ -71,16 +71,19 @@ export default class App implements App_interface {
 
   public initializeRoutes(): void {
     this.app.use("/", authRouteInstance.router);
-    this.app.get("/api/health", (req: express.Request, res: express.Response) => {
-      res.status(200).json({ status: "ok" });
-    });
+    this.app.get(
+      "/api/health",
+      (req: express.Request, res: express.Response) => {
+        res.status(200).json({ status: "ok" });
+      },
+    );
     console.log("Routes initialized.");
   }
 
   public initializeSocket(): void {
     this.io.on("connection", (socket) => {
       console.log(`Socket connected: ${socket.id}`);
-      
+
       socket.on("disconnect", () => {
         console.log(`Socket disconnected: ${socket.id}`);
       });

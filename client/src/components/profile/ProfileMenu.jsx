@@ -1,12 +1,12 @@
 import React from "react";
-import { 
-  MapPin, 
-  ShoppingBag, 
-  Pill, 
-  Gift, 
-  ShieldCheck, 
+import {
+  MapPin,
+  ShoppingBag,
+  Pill,
+  Gift,
+  ShieldCheck,
   LogOut,
-  ChevronRight
+  ChevronRight,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -53,14 +53,18 @@ const ProfileMenu = () => {
               >
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 group-hover:bg-white transition-colors border border-gray-100 text-gray-600 group-hover:shadow-sm">
-                     <item.icon size={18} strokeWidth={2} />
+                    <item.icon size={18} strokeWidth={2} />
                   </div>
                   <span className="text-[15px] font-semibold text-gray-800 tracking-tight">
                     {item.label}
                   </span>
                 </div>
-                
-                <ChevronRight size={18} className="text-gray-300 group-hover:text-gray-500 transition-colors group-hover:translate-x-1" strokeWidth={2.5}/>
+
+                <ChevronRight
+                  size={18}
+                  className="text-gray-300 group-hover:text-gray-500 transition-colors group-hover:translate-x-1"
+                  strokeWidth={2.5}
+                />
               </button>
             );
           })}
@@ -73,14 +77,14 @@ const ProfileMenu = () => {
             onClick={() => handleAction(logoutItem)}
             className="w-full flex items-center justify-between p-4 px-5 transition-colors bg-white hover:bg-red-50/50 active:bg-red-50 group"
           >
-             <div className="flex items-center gap-4">
-                <div className="w-10 h-10 flex items-center justify-center rounded-full bg-red-50 group-hover:bg-red-100 transition-colors border border-red-100 text-red-500">
-                   <logoutItem.icon size={18} strokeWidth={2.5} />
-                </div>
-                <span className="text-[15px] font-bold text-red-600 tracking-tight">
-                  {logoutItem.label}
-                </span>
-             </div>
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 flex items-center justify-center rounded-full bg-red-50 group-hover:bg-red-100 transition-colors border border-red-100 text-red-500">
+                <logoutItem.icon size={18} strokeWidth={2.5} />
+              </div>
+              <span className="text-[15px] font-bold text-red-600 tracking-tight">
+                {logoutItem.label}
+              </span>
+            </div>
           </button>
         </div>
       )}

@@ -1,48 +1,48 @@
 import { userModel } from "../models/user.schema.js";
 import { societyModel } from "../models/society.schema.js";
-import { UserDocument,User } from "../utils/user.interface.js";
-import { SocietyDocument,Society } from "../utils/society.interface.js";
-import bcryptjs from 'bcryptjs';
+import { UserDocument, User } from "../utils/user.interface.js";
+import { SocietyDocument, Society } from "../utils/society.interface.js";
+import bcryptjs from "bcryptjs";
 
-export class AuthService{
-    async getUserDetails(id:string){
-        return await userModel.findById(id)
+export class AuthService {
+  async getUserDetails(id: string) {
+    return await userModel.findById(id);
+  }
+  async getSocietyDetails(id: string) {
+    return await societyModel.findById(id);
+  }
 
+  async createSociety(societyData: Society): Promise<SocietyDocument> {
+    const existingSociety = await societyModel.findOne({
+      code: societyData.code,
+    });
+    if (existingSociety) {
+      throw new Error("A society with this code already exists.");
     }
-    async getSocietyDetails(id:string){
-        return await societyModel.findById(id)
+    const newSociety = await societyModel.create(societyData);
+    console.log("society created.");
+    return newSociety;
+  }
+  async createUser(userData: User): Promise<UserDocument> {
+    const existingUser = await userModel.findOne({ email: userData.email });
+    if (existingUser) {
+      throw new Error("This email is already registered.");
     }
-
-    async createSociety(societyData:Society):Promise<SocietyDocument>{
-        const existingSociety=await societyModel.findOne({code:societyData.code})
-        if (existingSociety){
-            throw new Error ("A society with this code already exists.")
-        }
-        const newSociety = await societyModel.create(societyData)
-        console.log("society created.")
-        return newSociety
+    const salt = await bcryptjs.genSalt(10);
+    if (!userData.password) {
+      throw new Error("Password is required.");
     }
-    async createUser(userData:User):Promise<UserDocument>{
-        const existingUser=await userModel.findOne({email: userData.email})
-        if (existingUser){
-            throw new Error ("This email is already registered.")
-        }
-        const salt=await bcryptjs.genSalt(10)
-        if (!userData.password) {
-            throw new Error("Password is required.");
-        }
-        const hashedPassword = await bcryptjs.hash(userData.password, salt);
+    const hashedPassword = await bcryptjs.hash(userData.password, salt);
 
-        // replace the raw password with the hashed one by copying all the data but it will overwrite the password
+    // replace the raw password with the hashed one by copying all the data but it will overwrite the password
 
-        const secureUserData = {
-            ...userData,
-            password: hashedPassword 
-        };
+    const secureUserData = {
+      ...userData,
+      password: hashedPassword,
+    };
 
-        const newUser=await userModel.create(secureUserData)
-        console.log("user created.")
-        return newUser
-    }
-    
+    const newUser = await userModel.create(secureUserData);
+    console.log("user created.");
+    return newUser;
+  }
 }
