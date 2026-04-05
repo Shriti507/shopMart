@@ -16,14 +16,14 @@ const App = () => {
   return (
     <>
       <Routes>
-        {/* Core Pages with Unified Navigation & Footer */}
+        
         <Route path='/' element={<MainLayout><Home/></MainLayout>}/>
         <Route path="about" element={<MainLayout><About/></MainLayout>}/>
         <Route path="contact" element={<MainLayout><Contact/></MainLayout>}/>
         <Route path="services" element={<MainLayout><Services/></MainLayout>}/>
         <Route path="categories" element={<MainLayout><Categories/></MainLayout>}/>
         
-        {/* Authentication & Dashboard (Special Layouts) */}
+       
         <Route path="login" element={<Login/>}/>
         <Route path="signUp" element={<SignUp/>}/>
         <Route path="user-dashboard" element={<UserDashboard/>}/>

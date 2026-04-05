@@ -64,7 +64,7 @@ const Header = ({ cartCount }) => {
 
       </div>
       
-        {/* Mobile Search Bar */}
+        
         <div className="md:hidden px-6 pb-4">
           <div className="flex items-center bg-white rounded-xl border border-white/10 overflow-hidden focus-within:border-[#dac889]/50 transition-all h-[46px] shadow-inner">
             <input 

@@ -36,6 +36,7 @@
     "globals": "^16.5.0",
     "jsdom": "^29.0.1",
     "vite": "^7.3.1",
-    "vitest": "^4.1.2"
+    "vitest": "^4.1.2",
+    "@playwright/test": "^1.42.1"
   }
 }
