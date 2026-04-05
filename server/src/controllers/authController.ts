@@ -32,8 +32,9 @@ export default class AuthController{
             })
 
         }
-        catch(err:any){
-            res.status(400).json({message:err.message})
+        catch(err){
+            const errorMessage = err instanceof Error ? err.message : "An error occurred";
+            res.status(400).json({message: errorMessage})
         }
     }
 
@@ -49,8 +50,9 @@ export default class AuthController{
             })
 
         }
-        catch(err:any){
-            res.status(400).json({message:err.message})
+        catch(err){
+            const errorMessage = err instanceof Error ? err.message : "An error occurred";
+            res.status(400).json({message: errorMessage})
         }
     }
     
