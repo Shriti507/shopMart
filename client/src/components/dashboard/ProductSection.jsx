@@ -41,7 +41,7 @@ const ProductSection = ({ title, onAddToCart }) => {
   return (
     <div className="w-full mb-10">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-[22px] font-extrabold text-white tracking-tight">
+        <h2 className="text-[22px] font-extrabold text-black tracking-tight">
           {title}
         </h2>
         <button className="text-[#dac889] text-sm font-bold hover:text-white transition-colors flex items-center gap-1 group">
