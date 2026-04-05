@@ -4,12 +4,12 @@ const HeroBanner = () => {
   return (
     <div className="max-w-screen-xl mx-auto px-6 mt-6 w-full">
       <div className="w-full bg-gradient-to-r from-[#212b1b] to-[#171e13] rounded-2xl px-10 py-12 border border-white/5 shadow-sm relative overflow-hidden flex flex-col md:flex-row items-center justify-between min-h-[360px] group mb-8">
-      {/* Background glow effects */}
+    
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute -top-[50%] -left-[10%] w-[60%] h-[150%] bg-gradient-to-tr from-[#dac889]/5 to-transparent rotate-12 blur-3xl"></div>
       </div>
 
-      {/* Left Content */}
+      
       <div className="relative z-10 w-full md:w-[55%] flex flex-col items-start gap-5">
         <div className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#dac889] text-[11px] font-bold tracking-[0.2em] uppercase mb-1 shadow-inner">
           100% Organic & Fresh
@@ -28,7 +28,7 @@ const HeroBanner = () => {
         </button>
       </div>
 
-      {/* Right Content - Illustration / Image */}
+
       <div className="relative z-10 w-full md:w-[45%] flex justify-center md:justify-end mt-10 md:mt-0">
          <img 
             src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=800" 

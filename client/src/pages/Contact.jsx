@@ -28,7 +28,6 @@ const Contact = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
@@ -40,12 +39,10 @@ const Contact = () => {
 
     setStatus('submitting');
     
-    // Simulate API call
     setTimeout(() => {
       setStatus('success');
       setFormData({ name: '', email: '', message: '' });
       
-      // Reset success state after a few seconds
       setTimeout(() => setStatus('idle'), 5000);
     }, 1500);
   };
@@ -65,7 +62,7 @@ const Contact = () => {
             </p>
           </div>
 
-          {/* Centered Contact Form */}
+          
           <div className="w-full max-w-[800px]">
             <div className="bg-white/[0.02] p-10 md:p-14 rounded-[20px] border border-white/[0.05] shadow-[0_30px_100px_rgba(0,0,0,0.3)] relative overflow-hidden backdrop-blur-sm">
               {status === 'success' && (

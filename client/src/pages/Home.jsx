@@ -8,11 +8,9 @@ const Home = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   
-  // toggle this to false to test the normal homepage
   const isAuthenticated = false;
 
   useEffect(() => {
-    // if user is authenticated immediately redirect to user-dashboard
     if (isAuthenticated) {
       navigate('/user-dashboard', { replace: true });
       return;

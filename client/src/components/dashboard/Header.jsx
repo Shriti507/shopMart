@@ -10,7 +10,7 @@ const Header = ({ cartCount }) => {
       <header className="w-full bg-[#1b2316]/95 backdrop-blur-xl rounded-2xl shadow-sm overflow-hidden flex flex-col border border-white/5">
         <div className="px-6 py-4 flex items-center justify-between gap-4">
         
-        {/* Left: Logo */}
+        
         <div className="flex items-center gap-4">
           <Link to="/user-dashboard" className="flex items-center gap-3 group hidden sm:flex">
             <div className="w-10 h-10 bg-gradient-to-br from-[#dac889] to-[#c3ae6d] rounded-xl flex items-center justify-center shadow-[0_4px_15px_rgba(218,200,137,0.3)] group-hover:scale-105 transition-transform duration-300">
@@ -22,7 +22,7 @@ const Header = ({ cartCount }) => {
           </Link>
         </div>
 
-        {/* Center: Search Bar */}
+          
         <div className="flex-1 max-w-2xl hidden md:flex items-center bg-white rounded-2xl border border-white/10 overflow-hidden focus-within:border-[#dac889]/50 focus-within:ring-2 focus-within:ring-[#dac889]/10 transition-all shadow-inner h-[50px]">
           <input 
             type="text" 
@@ -36,7 +36,7 @@ const Header = ({ cartCount }) => {
           </button>
         </div>
 
-        {/* Right: Message, Cart, Avatar */}
+          
         <div className="flex items-center gap-4 sm:gap-6">
           <div className="hidden lg:flex items-center text-sm font-bold tracking-wide text-[#dac889] bg-[#dac889]/10 px-4 py-2 rounded-xl border border-[#dac889]/20">
             ⚡ Order now & get it within 15 min!

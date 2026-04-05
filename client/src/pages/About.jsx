@@ -6,7 +6,7 @@ const About = () => {
     <div className="w-full bg-[#1b2316] min-h-screen text-gray-100 font-sans selection:bg-[#dac889] selection:text-[#1b2316]">
 
 
-      {/* Hero Section */}
+        
       <section className="relative py-32 overflow-hidden border-b border-white/5">
         <div className="absolute top-0 right-[-10%] w-[600px] h-[600px] bg-[#2a3622] rounded-full opacity-20 -translate-y-1/2 blur-3xl"></div>
         <div className="max-w-[1400px] mx-auto px-8 xl:px-12 relative z-10 text-center">
@@ -22,7 +22,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Mission & Vision */}
+      
       <section className="py-24 bg-[#171e13]/50">
         <div className="max-w-[1400px] mx-auto px-8 xl:px-12">
           <div className="grid md:grid-cols-2 gap-10">
@@ -49,7 +49,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Core Values */}
+
       <section className="py-24">
         <div className="max-w-[1400px] mx-auto px-8 xl:px-12">
           <div className="text-center mb-16">
@@ -72,7 +72,7 @@ const About = () => {
             ))}
           </div>
 
-          {/* Simplified remaining values */}
+          
           <div className="max-w-3xl mx-auto grid grid-cols-2 gap-6 p-8 bg-[#171e13]/30 rounded-2xl border border-white/5 italic text-sm text-gray-500">
              <div className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-[#dac889]"></span> Smart logistics & efficiency</div>
              <div className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-[#dac889]"></span> Eco-friendly packaging</div>

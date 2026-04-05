@@ -6,21 +6,20 @@ import ProductSection from '../components/dashboard/ProductSection';
 import Footer from '../components/Footer';
 
 const UserDashboard = () => {
-  const [cartCount, setCartCount] = useState(3); // Start with 3 items as per previous badge layout
+  const [cartCount, setCartCount] = useState(3); 
 
-  const handleAddToCart = (product) => {
-    // Increment cart count when product is added
+  const handleAddToCart = () => {
     setCartCount(prev => prev + 1);
     
-    // In a real app we would dispatch to a global store context here.
+    
   };
 
   return (
     <div className="w-full bg-gray-100 min-h-screen text-gray-900 font-sans selection:bg-[#dac889] selection:text-[#1b2316] flex flex-col hide-scrollbar">
-      {/* Sticky Top Bar for specific Dashboard */}
+      
       <Header cartCount={cartCount} />
 
-      {/* Main Content Area */}
+      
       <main className="w-full flex-1 flex flex-col fade-in">
         <HeroBanner />
         
@@ -32,7 +31,7 @@ const UserDashboard = () => {
           onAddToCart={handleAddToCart} 
         />
         
-        {/* Additional Example Section */}
+      
         <ProductSection 
           title="Fresh deals of the day" 
           onAddToCart={handleAddToCart} 
@@ -40,7 +39,7 @@ const UserDashboard = () => {
         </div>
       </main>
 
-      {/* Standard Footer */}
+      
       <Footer />
     </div>
   );

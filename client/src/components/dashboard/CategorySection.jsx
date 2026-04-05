@@ -16,7 +16,7 @@ const CategorySection = () => {
          <h2 className="text-[22px] font-extrabold text-black tracking-tight">Shop by <span className="text-[#dac889]">Category</span></h2>
       </div>
 
-      {/* Added hide-scrollbar utility class conceptually, but standard inline styles work too */}
+      
       <div className="flex overflow-x-auto pb-6 -mx-6 px-6 xl:mx-0 xl:px-0 lg:grid lg:grid-cols-6 gap-4 [&::-webkit-scrollbar]:hidden" style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}}>
         {categories.map((cat) => (
           <div key={cat.id} className="min-w-[140px] flex-1 bg-[#212b1b] rounded-2xl p-5 border border-white/5 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:-translate-y-2 hover:border-[#dac889]/30 transition-all duration-300 shadow-lg">
@@ -30,7 +30,7 @@ const CategorySection = () => {
           </div>
         ))}
         
-        {/* See All Card */}
+        
         <div className="min-w-[140px] flex-1 bg-gradient-to-br from-[#2a3622] to-[#1c2417] rounded-2xl p-5 border border-white/5 flex flex-col items-center justify-center gap-3 cursor-pointer group hover:-translate-y-2 hover:border-[#dac889]/30 transition-all duration-300 shadow-lg">
            <div className="p-4 rounded-[20px] bg-[#dac889]/10 group-hover:scale-110 group-hover:bg-[#dac889] transition-all duration-300 shadow-inner">
               <ArrowRight size={32} className="text-[#dac889] group-hover:text-[#1b2316]" strokeWidth={2} />
