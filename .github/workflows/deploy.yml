@@ -9,7 +9,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-    
+
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v4
@@ -23,21 +23,21 @@ jobs:
           script: |
             # Navigate to the production application directory
             cd /var/www/shopSmart || exit
-            
+
             # Pull latest changes from master/main
             git pull origin main
-            
+
             # Install & Build Backend
             cd server
             npm ci
             npm run build
-            
+
             # Install & Build Frontend
             cd ../client
             npm ci
             npm run build
-            
+
             # Gracefully restart application manager processes (e.g. pm2)
             # pm2 restart server
-            
+
             echo "Deployment to EC2 completed successfully!"

@@ -10,6 +10,14 @@ import Services from "./pages/Services";
 import Categories from "./pages/Categories";
 import MainLayout from "./components/layout/MainLayout";
 
+// Profile Routes
+import Profile from "./pages/Profile";
+import Addresses from "./pages/Addresses";
+import Orders from "./pages/Orders";
+import Prescriptions from "./pages/Prescriptions";
+import GiftCards from "./pages/GiftCards";
+import Privacy from "./pages/Privacy";
+
 const App = () => {
   return (
     <>
@@ -58,6 +66,13 @@ const App = () => {
         <Route path="login" element={<Login />} />
         <Route path="signUp" element={<SignUp />} />
         <Route path="user-dashboard" element={<UserDashboard />} />
+
+        <Route path="profile" element={<Profile />} />
+        <Route path="addresses" element={<Addresses />} />
+        <Route path="orders" element={<Orders />} />
+        <Route path="prescriptions" element={<Prescriptions />} />
+        <Route path="gift-cards" element={<GiftCards />} />
+        <Route path="privacy" element={<Privacy />} />
       </Routes>
     </>
   );

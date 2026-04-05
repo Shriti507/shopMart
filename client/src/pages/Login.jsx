@@ -1,7 +1,16 @@
 import React from "react";
 import groceryImage from "../assets/grocery.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    navigate("/user-dashboard");
+  };
+
   return (
     <div className="flex h-screen w-full">
       <div className="w-[55%] hidden md:inline-block">
@@ -13,7 +22,10 @@ const Login = () => {
       </div>
 
       <div className="w-full  md:w-[45%] flex flex-col items-center justify-center md:items-start md:pl-24">
-        <form className="md:w-96 w-80 flex flex-col  justify-center">
+        <form
+          onSubmit={handleSubmit}
+          className="md:w-96 w-80 flex flex-col  justify-center"
+        >
           <h2 className="text-4xl text-[#847949] font-medium">Sign in</h2>
           <p className="text-sm text-[#839490] mt-3">
             Welcome back! Please sign in to continue

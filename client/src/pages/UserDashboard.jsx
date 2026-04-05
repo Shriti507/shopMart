@@ -23,12 +23,20 @@ const UserDashboard = () => {
           <CategorySection />
 
           <ProductSection
-            title="You might need"
+            title={
+              <>
+                You might <span className="text-[#dac889]">need</span>
+              </>
+            }
             onAddToCart={handleAddToCart}
           />
 
           <ProductSection
-            title="Fresh deals of the day"
+            title={
+              <>
+                Fresh <span className="text-[#dac889]">deals</span> of the day
+              </>
+            }
             onAddToCart={handleAddToCart}
           />
         </div>

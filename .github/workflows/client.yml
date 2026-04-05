@@ -3,11 +3,11 @@ name: Frontend CI
 on:
   push:
     paths:
-      - 'client/**'
+      - "client/**"
 
   pull_request:
     paths:
-      - 'client/**'
+      - "client/**"
 
 jobs:
   build:

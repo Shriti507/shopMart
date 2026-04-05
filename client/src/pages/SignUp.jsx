@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import groceryImage from "../assets/grocery.jpg";
 import { CircleUserRound, Mail, Phone, Lock, Users } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,6 +21,7 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form Submitted:", formData);
+    navigate("/user-dashboard");
   };
 
   return (
