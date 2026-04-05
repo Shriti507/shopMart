@@ -27,7 +27,7 @@ const ProductSection = ({ title, onAddToCart }) => {
         
         setProducts(mappedProducts);
         setError(null);
-      } catch (err) {
+      } catch {
         setError("Failed to load products");
       } finally {
         setIsLoading(false);
