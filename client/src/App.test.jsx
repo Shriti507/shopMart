@@ -7,7 +7,7 @@ test("renders app", () => {
   render(
     <MemoryRouter>
       <App />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 
   expect(screen.getAllByText(/shopSmart/i).length).toBeGreaterThan(0);
