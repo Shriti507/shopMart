@@ -1,43 +1,32 @@
-name: Deploy to Production
+script: |
+  # Clone if not exists
+  if [ ! -d "/var/www/shopSmart" ]; then
+    git clone https://github.com/Shriti507/shopSmart.git /var/www/shopSmart
+  fi
 
-on:
-  push:
-    branches:
-      - main
+  cd /var/www/shopSmart
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+  # Pull latest code
+  git pull origin main
 
-    steps:
-      - name: Checkout Source Code
-        uses: actions/checkout@v4
+  # backend
+  cd server
+  npm ci
+  npm run build
 
-      - name: Deploy to AWS EC2
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USERNAME }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            # Navigate to the production application directory
-            cd /var/www/shopSmart || exit
+  # Start/restart backend properly
+  pm2 restart shopSmart || pm2 start npm --name "shopSmart" -- start
 
-            # Pull latest changes from master/main
-            git pull origin main
+  # frontend
+  cd ../client
+  npm ci
+  npm run build
 
-            # Install & Build Backend
-            cd server
-            npm ci
-            npm run build
+  # Deploy frontend to Nginx
+  sudo rm -rf /var/www/html/*
+  sudo cp -r dist/* /var/www/html/
 
-            # Install & Build Frontend
-            cd ../client
-            npm ci
-            npm run build
+  # Restart Nginx
+  sudo systemctl restart nginx
 
-            # Gracefully restart application manager processes (e.g. pm2)
-            # pm2 restart server
-
-            echo "Deployment to EC2 completed successfully!"
+  echo "Deployment successful"
