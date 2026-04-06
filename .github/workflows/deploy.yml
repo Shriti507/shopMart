@@ -1,32 +1,49 @@
-script: |
-  # Clone if not exists
-  if [ ! -d "/var/www/shopSmart" ]; then
-    git clone https://github.com/Shriti507/shopSmart.git /var/www/shopSmart
-  fi
+name: AWS EC2 deployment
 
-  cd /var/www/shopSmart
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "client/**"
 
-  # Pull latest code
-  git pull origin main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
 
-  # backend
-  cd server
-  npm ci
-  npm run build
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
 
-  # Start/restart backend properly
-  pm2 restart shopSmart || pm2 start npm --name "shopSmart" -- start
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            # Clone if not exists
+            if [ ! -d "/var/www/shopSmart" ]; then
+              git clone https://github.com/Shriti507/shopSmart.git /var/www/shopSmart
+            fi
 
-  # frontend
-  cd ../client
-  npm ci
-  npm run build
+            cd /var/www/shopSmart
 
-  # Deploy frontend to Nginx
-  sudo rm -rf /var/www/html/*
-  sudo cp -r dist/* /var/www/html/
+            # Pull latest code
+            git pull origin main
 
-  # Restart Nginx
-  sudo systemctl restart nginx
+            # Go to frontend
+            cd client
 
-  echo "Deployment successful"
+            # Install & build
+            npm ci
+            npm run build
+
+            # Deploy to Nginx
+            sudo rm -rf /var/www/html/*
+            sudo cp -r dist/* /var/www/html/
+
+            # Restart Nginx
+            sudo systemctl restart nginx
+
+            echo "Frontend deployed successfully"
