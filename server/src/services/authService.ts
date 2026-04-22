@@ -45,4 +45,28 @@ export class AuthService {
     console.log("user created.");
     return newUser;
   }
+
+  async loginUser(email: string, password: string) {
+    // 1. Find user and explicitly select password (since it's hidden by default in schema)
+    const user = await userModel.findOne({ email }).select("+password");
+    if (!user || !user.password) {
+      throw new Error("Invalid email or password");
+    }
+
+    // 2. Compare passwords
+    const isMatch = await bcryptjs.compare(password, user.password);
+    if (!isMatch) {
+      throw new Error("Invalid email or password");
+    }
+
+    return user;
+  }
+
+  async loginSociety(code: string) {
+    const society = await societyModel.findOne({ code });
+    if (!society) {
+      throw new Error("Invalid society code. Please check your society code.");
+    }
+    return society;
+  }
 }

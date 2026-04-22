@@ -204,36 +204,36 @@ const Footer = () => {
             </h4>
             <ul className="flex flex-col gap-5 text-[#1b2316] font-bold text-sm">
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/"
                   className="hover:text-[#D4AF37] hover:underline transition-all duration-300"
                 >
                   Help Center
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/"
                   className="hover:text-[#D4AF37] hover:underline transition-all duration-300"
                 >
                   Returns
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/privacy"
                   className="hover:text-[#D4AF37] hover:underline transition-all duration-300"
                 >
                   Privacy
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/"
                   className="hover:text-[#D4AF37] hover:underline transition-all duration-300"
                 >
                   Terms
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -267,15 +267,15 @@ const Footer = () => {
             reserved.
           </p>
           <div className="flex items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-[#9CA3AF]">
-            <a href="#" className="hover:text-[#1b2316] transition-colors">
+            <Link to="/" className="hover:text-[#1b2316] transition-colors">
               Terms
-            </a>
-            <a href="#" className="hover:text-[#1b2316] transition-colors">
+            </Link>
+            <Link to="/privacy" className="hover:text-[#1b2316] transition-colors">
               Privacy
-            </a>
-            <a href="#" className="hover:text-[#1b2316] transition-colors">
+            </Link>
+            <Link to="/" className="hover:text-[#1b2316] transition-colors">
               Cookies
-            </a>
+            </Link>
           </div>
           <div className="flex items-center gap-3 grayscale opacity-30 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
             <div className="w-10 h-6 bg-gray-100 rounded-md border border-gray-200"></div>

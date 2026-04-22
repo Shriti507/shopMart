@@ -14,11 +14,10 @@ export default class AuthRoute {
   }
 
   private initializeRoutes() {
-    this.router.post(`${this.path}/register`, this.authController.registerUser);
-    this.router.post(
-      `${this.path}/register-society`,
-      this.authController.registerSociety,
-    );
+    this.router.post("/register", this.authController.registerUser);
+    this.router.post("/register-society", this.authController.registerSociety);
+    this.router.post("/login", this.authController.loginUser);
+    this.router.post("/login-society", this.authController.loginSociety);
   }
 }
 

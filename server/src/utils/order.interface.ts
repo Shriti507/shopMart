@@ -1,7 +1,7 @@
 import { Document, Types } from "mongoose";
 
-export interface Order {
-  product: Types.ObjectId;
+export interface OrderLineItem {
+  productId: string;
   name: string;
   price: number;
   quantity: number;
@@ -10,8 +10,8 @@ export interface Order {
 
 export interface IOrder extends Document {
   user: Types.ObjectId;
-  society: Types.ObjectId; // to group deliveries
-  items: Order[];
+  society: Types.ObjectId | null;
+  items: OrderLineItem[];
   totalAmount: number;
   status:
     | "Pending"
@@ -21,6 +21,6 @@ export interface IOrder extends Document {
     | "Cancelled";
   paymentMethod: "COD" | "UPI";
   paymentStatus: "Pending" | "Paid" | "Failed";
+  createdAt: Date;
+  updatedAt: Date;
 }
-
-export interface OrderDocument extends Document, Order {}

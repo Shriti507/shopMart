@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Plus, Loader2, AlertCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { fetchProducts } from "../../services/api";
+import * as shopApi from "../../services/shopApi";
+import { useAuth } from "../../context/AuthContext";
 
-const ProductSection = ({ title, onAddToCart }) => {
+const ProductSection = ({ title }) => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [addingId, setAddingId] = useState(null);
+  const { isAuthenticated, refreshCartCount } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -37,6 +43,28 @@ const ProductSection = ({ title, onAddToCart }) => {
 
     loadProducts();
   }, []);
+
+  const handleAddToCart = async (product) => {
+    if (!isAuthenticated) {
+      navigate("/login", { state: { from: "/user-dashboard" } });
+      return;
+    }
+    try {
+      setAddingId(product.id);
+      await shopApi.addToCart({
+        productId: String(product.id),
+        title: product.name,
+        price: product.price,
+        quantity: 1,
+        image: product.image || "",
+      });
+      await refreshCartCount();
+    } catch (e) {
+      setError(e.message || "Could not add to cart");
+    } finally {
+      setAddingId(null);
+    }
+  };
 
   return (
     <div className="w-full mb-10">
@@ -107,10 +135,15 @@ const ProductSection = ({ title, onAddToCart }) => {
                   </div>
 
                   <button
-                    onClick={() => onAddToCart(product)}
-                    className="bg-[#171e13] text-white hover:bg-[#dac889] hover:text-[#1b2316] w-9 h-9 rounded-xl flex items-center justify-center transition-colors border border-white/10 group-hover:border-transparent shrink-0 active:scale-90"
+                    onClick={() => handleAddToCart(product)}
+                    disabled={addingId === product.id}
+                    className="bg-[#171e13] text-white hover:bg-[#dac889] hover:text-[#1b2316] w-9 h-9 rounded-xl flex items-center justify-center transition-colors border border-white/10 group-hover:border-transparent shrink-0 active:scale-90 disabled:opacity-50"
                   >
-                    <Plus size={18} strokeWidth={3} />
+                    {addingId === product.id ? (
+                      <Loader2 className="animate-spin" size={18} />
+                    ) : (
+                      <Plus size={18} strokeWidth={3} />
+                    )}
                   </button>
                 </div>
               </div>

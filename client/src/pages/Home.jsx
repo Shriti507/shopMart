@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Hero from "../components/home/Hero";
+import { useAuth } from "../context/AuthContext";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
   const [isMobile, setIsMobile] = useState(false);
-
-  const isAuthenticated = false;
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -27,7 +27,7 @@ const Home = () => {
 
     window.addEventListener("resize", checkViewport);
     return () => window.removeEventListener("resize", checkViewport);
-  }, [navigate]);
+  }, [navigate, isAuthenticated]);
 
   if (isMobile) {
     return null;

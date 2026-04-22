@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "../components/dashboard/Header";
 import HeroBanner from "../components/dashboard/HeroBanner";
 import CategorySection from "../components/dashboard/CategorySection";
@@ -6,15 +6,9 @@ import ProductSection from "../components/dashboard/ProductSection";
 import Footer from "../components/Footer";
 
 const UserDashboard = () => {
-  const [cartCount, setCartCount] = useState(3);
-
-  const handleAddToCart = () => {
-    setCartCount((prev) => prev + 1);
-  };
-
   return (
     <div className="w-full bg-gray-100 min-h-screen text-gray-900 font-sans selection:bg-[#dac889] selection:text-[#1b2316] flex flex-col hide-scrollbar">
-      <Header cartCount={cartCount} />
+      <Header />
 
       <main className="w-full flex-1 flex flex-col fade-in">
         <HeroBanner />
@@ -28,7 +22,6 @@ const UserDashboard = () => {
                 You might <span className="text-[#dac889]">need</span>
               </>
             }
-            onAddToCart={handleAddToCart}
           />
 
           <ProductSection
@@ -37,7 +30,6 @@ const UserDashboard = () => {
                 Fresh <span className="text-[#dac889]">deals</span> of the day
               </>
             }
-            onAddToCart={handleAddToCart}
           />
         </div>
       </main>

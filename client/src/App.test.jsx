@@ -2,11 +2,14 @@ import { render, screen } from "@testing-library/react";
 import App from "./App";
 import "@testing-library/jest-dom";
 import { MemoryRouter } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
 
 test("renders app", () => {
   render(
     <MemoryRouter>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MemoryRouter>,
   );
 

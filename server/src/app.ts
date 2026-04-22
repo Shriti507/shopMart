@@ -4,6 +4,8 @@ import cors from "cors";
 import http from "http";
 import { Server } from "socket.io";
 import { authRouteInstance } from "./routes/authRoute.js";
+import { cartRouteInstance } from "./routes/cartRoute.js";
+import { orderRouteInstance } from "./routes/orderRoute.js";
 
 interface App_interface {
   startServer(): void;
@@ -24,7 +26,7 @@ export default class App implements App_interface {
     this.server = http.createServer(this.app);
     this.io = new Server(this.server, {
       cors: {
-        origin: "*", // Adjust this for production security
+        origin: "*",
         methods: ["GET", "POST"],
       },
     });
@@ -36,7 +38,12 @@ export default class App implements App_interface {
   }
 
   private initializeMiddleware(): void {
-    this.app.use(cors());
+    this.app.use(
+      cors({
+        origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+        credentials: true,
+      }),
+    );
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
   }
@@ -70,13 +77,12 @@ export default class App implements App_interface {
   }
 
   public initializeRoutes(): void {
-    this.app.use("/", authRouteInstance.router);
-    this.app.get(
-      "/api/health",
-      (req: express.Request, res: express.Response) => {
-        res.status(200).json({ status: "ok" });
-      },
-    );
+    this.app.use("/api/auth", authRouteInstance.router);
+    this.app.use("/api/cart", cartRouteInstance.router);
+    this.app.use("/api/order", orderRouteInstance.router);
+    this.app.get("/api/health", (req: express.Request, res: express.Response) => {
+      res.status(200).json({ status: "ok" });
+    });
     console.log("Routes initialized.");
   }
 

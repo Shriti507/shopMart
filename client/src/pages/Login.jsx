@@ -1,14 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import groceryImage from "../assets/grocery.jpg";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { login } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    navigate("/user-dashboard");
+    setError("");
+    setLoading(true);
+    try {
+      await login(email, password);
+      const dest = location.state?.from || "/user-dashboard";
+      navigate(dest, { replace: true });
+    } catch (err) {
+      setError(
+        err.data?.message || 
+        err.response?.data?.message || 
+        err.message || 
+        "Login failed"
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -30,6 +51,10 @@ const Login = () => {
           <p className="text-sm text-[#839490] mt-3">
             Welcome back! Please sign in to continue
           </p>
+
+          {error && (
+            <p className="text-red-600 text-sm mt-4 font-medium">{error}</p>
+          )}
 
           <button
             type="button"
@@ -69,6 +94,8 @@ const Login = () => {
               placeholder="Email id"
               className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full h-full"
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -90,6 +117,8 @@ const Login = () => {
               placeholder="Password"
               className="bg-transparent text-gray-500/80 placeholder-gray-500/80 outline-none text-sm w-full h-full"
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
@@ -107,15 +136,16 @@ const Login = () => {
 
           <button
             type="submit"
-            className="mt-8 w-full h-11 rounded-full text-white bg-[#310E10] hover:opacity-90 transition-opacity"
+            disabled={loading}
+            className="mt-8 w-full h-11 rounded-full text-white bg-[#310E10] hover:opacity-90 transition-opacity disabled:opacity-50"
           >
-            Login
+            {loading ? "Signing in…" : "Login"}
           </button>
           <p className="text-[#839490] text-sm mt-4">
             Don’t have an account?{" "}
-            <a className="text-[#4c1f21] hover:underline" href="/signUp">
+            <Link className="text-[#4c1f21] hover:underline" to="/signUp">
               Sign up
-            </a>
+            </Link>
           </p>
         </form>
       </div>

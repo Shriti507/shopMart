@@ -1,14 +1,17 @@
 import React from "react";
-import { Route, Router, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import UserDashboard from "./pages/UserDashboard";
+import CartPage from "./pages/CartPage";
+import CheckoutPage from "./pages/CheckoutPage";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Services from "./pages/Services";
 import Categories from "./pages/Categories";
 import MainLayout from "./components/layout/MainLayout";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 // Profile Routes
 import Profile from "./pages/Profile";
@@ -62,17 +65,87 @@ const App = () => {
             </MainLayout>
           }
         />
+        <Route
+          path="/cart"
+          element={
+            <ProtectedRoute>
+              <MainLayout>
+                <CartPage />
+              </MainLayout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <MainLayout>
+                <CheckoutPage />
+              </MainLayout>
+            </ProtectedRoute>
+          }
+        />
 
         <Route path="login" element={<Login />} />
         <Route path="signUp" element={<SignUp />} />
-        <Route path="user-dashboard" element={<UserDashboard />} />
 
-        <Route path="profile" element={<Profile />} />
-        <Route path="addresses" element={<Addresses />} />
-        <Route path="orders" element={<Orders />} />
-        <Route path="prescriptions" element={<Prescriptions />} />
-        <Route path="gift-cards" element={<GiftCards />} />
-        <Route path="privacy" element={<Privacy />} />
+        {/* Protected Dashboard and Profile Routes */}
+        <Route
+          path="user-dashboard"
+          element={
+            <ProtectedRoute>
+              <UserDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="addresses"
+          element={
+            <ProtectedRoute>
+              <Addresses />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="orders"
+          element={
+            <ProtectedRoute>
+              <Orders />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="prescriptions"
+          element={
+            <ProtectedRoute>
+              <Prescriptions />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="gift-cards"
+          element={
+            <ProtectedRoute>
+              <GiftCards />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="privacy"
+          element={
+            <ProtectedRoute>
+              <Privacy />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );

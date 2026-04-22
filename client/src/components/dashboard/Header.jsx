@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { Menu, Search, ShoppingCart, User } from "lucide-react";
+import { Search, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
-const Header = ({ cartCount }) => {
+const Header = ({ cartCount: cartCountProp }) => {
+  const { cartItemCount } = useAuth();
+  const cartCount = cartCountProp ?? cartItemCount;
   const [searchQuery, setSearchQuery] = useState("");
 
   return (

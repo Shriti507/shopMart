@@ -9,9 +9,11 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const ProfileMenu = () => {
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   // Data-Driven Config Array
   const menuConfig = [
@@ -25,8 +27,7 @@ const ProfileMenu = () => {
 
   const handleAction = (item) => {
     if (item.action === "logout") {
-      // Clear auth tokens
-      localStorage.removeItem("token");
+      logout();
       navigate("/login");
     } else if (item.route) {
       navigate(item.route);

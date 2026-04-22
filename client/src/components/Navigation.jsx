@@ -1,8 +1,10 @@
 import { ShoppingCart, User } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function Navigation() {
   const location = useLocation();
+  const { isAuthenticated, cartItemCount, user } = useAuth();
 
   return (
     <header className="w-full bg-white border-b border-gray-100 shadow-sm transition-all duration-300">
@@ -55,7 +57,7 @@ export default function Navigation() {
 
         <div className="flex items-center gap-6">
           <Link
-            to="/login"
+            to={isAuthenticated ? "/user-dashboard" : "/login"}
             className="flex items-center gap-3 text-gray-600 hover:text-[#dac889] transition-all group"
           >
             <div className="w-10 h-10 border border-gray-200 bg-gray-50 rounded-full flex items-center justify-center shadow-inner group-hover:border-[#dac889]/30 group-hover:bg-[#2a3622] transition-all">
@@ -67,7 +69,7 @@ export default function Navigation() {
             </div>
             <div className="hidden md:flex flex-col">
               <span className="text-[13px] font-bold text-gray-800 group-hover:text-[#dac889] leading-none transition-colors">
-                Sign In
+                {isAuthenticated ? user?.name || "Dashboard" : "Sign In"}
               </span>
             </div>
           </Link>
@@ -82,9 +84,11 @@ export default function Navigation() {
               className="text-[#dac889] group-hover:scale-110 transition-transform"
               strokeWidth={2}
             />
-            <span className="absolute -top-1.5 -right-1.5 bg-gradient-to-tr from-[#af3a3a] to-[#e85a5a] text-white text-[10px] font-black w-[22px] h-[22px] rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(175,58,58,0.5)] border-2 border-white">
-              3
-            </span>
+            {cartItemCount > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 bg-gradient-to-tr from-[#af3a3a] to-[#e85a5a] text-white text-[10px] font-black w-[22px] h-[22px] rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(175,58,58,0.5)] border-2 border-white">
+                {cartItemCount}
+              </span>
+            )}
           </Link>
         </div>
       </div>

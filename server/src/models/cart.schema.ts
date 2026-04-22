@@ -1,32 +1,33 @@
 import { Schema, model } from "mongoose";
 import { CartDocument } from "../utils/cart.interface.js";
 
-const cartSchema = new Schema<CartDocument>({
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-    requried: true,
-    unique: true, //one cart per user
+const cartItemSchema = new Schema(
+  {
+    productId: { type: String, required: true },
+    title: { type: String, required: true },
+    price: { type: Number, required: true, min: 0 },
+    quantity: { type: Number, required: true, min: 1, default: 1 },
+    image: { type: String, default: "" },
   },
-  items: [
-    {
-      product: {
-        type: Schema.Types.ObjectId,
-        ref: "Product", // links to Product Inventory
-        required: true,
-      },
-      quantity: {
-        type: Number,
-        required: true,
-        min: 1, // can't add 0 items
-        default: 1,
-      },
+  { _id: false },
+);
+
+const cartSchema = new Schema<CartDocument>(
+  {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+      unique: true,
     },
-  ],
-  totalPrice: {
-    type: Number,
-    default: 0,
+    items: [cartItemSchema],
+    totalPrice: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
   },
-});
+  { timestamps: true },
+);
 
 export const cartModel = model<CartDocument>("Cart", cartSchema);

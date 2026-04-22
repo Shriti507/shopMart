@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import groceryImage from "../assets/grocery.jpg";
 import { CircleUserRound, Mail, Phone, Lock, Users } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Signup = () => {
   const navigate = useNavigate();
-
+  const { register } = useAuth();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -13,15 +14,44 @@ const Signup = () => {
     password: "",
     role: "Member",
   });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
-    navigate("/user-dashboard");
+    setError("");
+    setLoading(true);
+    try {
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        role: formData.role,
+        isOnline: false,
+      };
+      if (formData.phoneNumber?.trim()) {
+        payload.phoneNumber = formData.phoneNumber.trim();
+      }
+      await register(payload);
+      navigate("/user-dashboard", { replace: true });
+    } catch (err) {
+      const message = 
+        err.data?.message || 
+        err.response?.data?.message || 
+        err.message || 
+        "";
+      if (message.includes("E11000") || message.includes("Phone number already exists")) {
+        setError("Phone number already exists");
+      } else {
+        setError(message || "Registration failed");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -45,6 +75,10 @@ const Signup = () => {
           <p className="text-sm text-[#839490] mt-3">
             Fresh groceries and daily essentials, right at your doorstep
           </p>
+
+          {error && (
+            <p className="text-red-600 text-sm mt-4 font-medium">{error}</p>
+          )}
 
           <button
             type="button"
@@ -141,19 +175,20 @@ const Signup = () => {
 
           <button
             type="submit"
-            className="mt-4 w-full h-11 rounded-full text-white bg-[#310E10] hover:opacity-90 transition-opacity font-medium"
+            disabled={loading}
+            className="mt-4 w-full h-11 rounded-full text-white bg-[#310E10] hover:opacity-90 transition-opacity font-medium disabled:opacity-50"
           >
-            Sign Up
+            {loading ? "Creating account…" : "Sign Up"}
           </button>
 
           <p className="text-[#839490] text-sm mt-4 text-center md:text-left">
             Already have an account?{" "}
-            <a
+            <Link
               className="text-[#4c1f21] font-semibold hover:underline"
-              href="/login"
+              to="/login"
             >
               Sign in
-            </a>
+            </Link>
           </p>
         </form>
       </div>

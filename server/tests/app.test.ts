@@ -29,7 +29,6 @@ describe("GET /api/health", () => {
   });
 
   afterAll(async () => {
-    // Close the server and any other resources if needed
     if (appInstance && appInstance.server) {
       appInstance.server.close();
     }
