@@ -9,7 +9,7 @@ const ProfileHeader = ({ title, rightElement }) => {
     <div className="bg-white border-b border-gray-100 sticky top-0 z-10 px-4 py-4">
       <div className="max-w-[600px] mx-auto flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <button 
+          <button
             onClick={() => navigate(-1)}
             className="p-2 hover:bg-gray-50 rounded-full transition-colors"
           >

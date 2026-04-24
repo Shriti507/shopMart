@@ -1,14 +1,6 @@
-import React, {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import * as shopApi from "../services/shopApi";
-
-const AuthContext = createContext(null);
+import { AuthContext } from "./AuthContext.js";
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
@@ -48,8 +40,17 @@ export function AuthProvider({ children }) {
     }
   }, [logout]);
 
+  // useEffect(() => {
+  //   refreshCartCount();
+  // }, [token, refreshCartCount]);
+
   useEffect(() => {
-    refreshCartCount();
+    const fetchCart = async () => {
+      if (token) {
+        await refreshCartCount();
+      }
+    };
+    fetchCart();
   }, [token, refreshCartCount]);
 
   useEffect(() => {
@@ -104,16 +105,5 @@ export function AuthProvider({ children }) {
     }),
     [user, token, login, register, logout, cartItemCount, refreshCartCount],
   );
-
-  return (
-    <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
-  );
-}
-
-export function useAuth() {
-  const ctx = useContext(AuthContext);
-  if (!ctx) {
-    throw new Error("useAuth must be used within AuthProvider");
-  }
-  return ctx;
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

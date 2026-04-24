@@ -102,4 +102,3 @@ export const deleteAddress = (id) =>
   apiFetch(`/api/user/addresses/${id}`, {
     method: "DELETE",
   });
-

@@ -32,7 +32,6 @@ const UserDashboard = () => {
           />
         </div>
       </main>
-
     </div>
   );
 };

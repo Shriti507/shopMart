@@ -1,6 +1,6 @@
 import { ShoppingCart, User } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/useAuth";
 
 export default function Navigation() {
   const location = useLocation();

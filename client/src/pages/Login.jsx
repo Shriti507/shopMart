@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import groceryImage from "../assets/grocery.jpg";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/useAuth";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -22,10 +22,10 @@ const Login = () => {
       navigate(dest, { replace: true });
     } catch (err) {
       setError(
-        err.data?.message || 
-        err.response?.data?.message || 
-        err.message || 
-        "Login failed"
+        err.data?.message ||
+          err.response?.data?.message ||
+          err.message ||
+          "Login failed",
       );
     } finally {
       setLoading(false);

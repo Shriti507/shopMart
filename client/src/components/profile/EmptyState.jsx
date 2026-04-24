@@ -7,9 +7,13 @@ const EmptyState = ({ icon, title, subtext, buttonText, onButtonClick }) => {
         {icon}
       </div>
       <h2 className="text-2xl font-black text-[#1a1a1a] mb-3">{title}</h2>
-      {subtext && <p className="text-[#6b7280] max-w-[350px] mx-auto mb-8 leading-relaxed font-medium">{subtext}</p>}
+      {subtext && (
+        <p className="text-[#6b7280] max-w-[350px] mx-auto mb-8 leading-relaxed font-medium">
+          {subtext}
+        </p>
+      )}
       {buttonText && (
-        <button 
+        <button
           onClick={onButtonClick}
           className="bg-[#1f2d1f] text-white px-10 py-4 rounded-2xl font-bold flex items-center gap-2 mx-auto hover:opacity-90 shadow-sm transition-all active:scale-95"
         >
