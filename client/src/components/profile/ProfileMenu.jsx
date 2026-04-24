@@ -17,11 +17,11 @@ const ProfileMenu = () => {
 
   // Data-Driven Config Array
   const menuConfig = [
-    { label: "My Addresses", icon: MapPin, route: "/addresses" },
-    { label: "My Orders", icon: ShoppingBag, route: "/orders" },
-    { label: "My Prescriptions", icon: Pill, route: "/prescriptions" },
-    { label: "E-Gift Cards", icon: Gift, route: "/gift-cards" },
-    { label: "Account Privacy", icon: ShieldCheck, route: "/privacy" },
+    { label: "My Addresses", icon: MapPin, route: "/profile/addresses" },
+    { label: "My Orders", icon: ShoppingBag, route: "/profile/orders" },
+    { label: "My Prescriptions", icon: Pill, route: "/profile/prescriptions" },
+    { label: "E-Gift Cards", icon: Gift, route: "/profile/gift-cards" },
+    { label: "Account Privacy", icon: ShieldCheck, route: "/profile/privacy" },
     { label: "Logout", icon: LogOut, action: "logout" },
   ];
 

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { fetchProducts } from "../../services/api";
 import * as shopApi from "../../services/shopApi";
 import { useAuth } from "../../context/AuthContext";
+import { formatUSD } from "../../utils/price";
 
 const ProductSection = ({ title }) => {
   const [products, setProducts] = useState([]);
@@ -124,13 +125,13 @@ const ProductSection = ({ title }) => {
                   <div className="flex flex-col">
                     {product.oldPrice ? (
                       <span className="text-gray-500 text-[10px] font-bold line-through">
-                        ${product.oldPrice.toFixed(2)}
+                        {formatUSD(product.oldPrice)}
                       </span>
                     ) : (
                       <div className="h-[15px]"></div>
                     )}
                     <span className="text-[#dac889] font-black text-lg tracking-tight leading-none">
-                      ${product.price.toFixed(2)}
+                      {formatUSD(product.price)}
                     </span>
                   </div>
 

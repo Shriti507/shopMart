@@ -31,6 +31,7 @@ export default class AuthController {
           _id: newUser._id,
           name: newUser.name,
           email: newUser.email,
+          phone: newUser.phone,
         },
         token: token,
       });
@@ -86,6 +87,7 @@ export default class AuthController {
           _id: user._id,
           name: user.name,
           email: user.email,
+          phone: user.phone,
           role: user.role,
           societyId: user.societyId,
         },

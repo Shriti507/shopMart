@@ -75,3 +75,31 @@ export const createOrder = () =>
     method: "POST",
     body: JSON.stringify({}),
   });
+
+export const getOrders = () => apiFetch("/api/order");
+
+// User Profile
+export const getProfile = () => apiFetch("/api/user/profile");
+export const updateProfile = (body) =>
+  apiFetch("/api/user/profile", {
+    method: "PUT",
+    body: JSON.stringify(body),
+  });
+
+// Addresses
+export const getAddresses = () => apiFetch("/api/user/addresses");
+export const addAddress = (body) =>
+  apiFetch("/api/user/addresses", {
+    method: "POST",
+    body: JSON.stringify(body),
+  });
+export const updateAddress = (id, body) =>
+  apiFetch(`/api/user/addresses/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(body),
+  });
+export const deleteAddress = (id) =>
+  apiFetch(`/api/user/addresses/${id}`, {
+    method: "DELETE",
+  });
+

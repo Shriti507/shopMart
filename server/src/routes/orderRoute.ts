@@ -8,6 +8,7 @@ export default class OrderRoute {
 
   constructor() {
     this.router.post("/create", requireAuth, this.controller.create);
+    this.router.get("/", requireAuth, this.controller.getOrders);
   }
 }
 

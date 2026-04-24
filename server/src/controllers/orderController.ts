@@ -22,4 +22,14 @@ export default class OrderController {
       res.status(400).json({ message });
     }
   };
+
+  public getOrders = async (req: AuthedRequest, res: Response): Promise<void> => {
+    try {
+      const orders = await this.orderService.getUserOrders(req.userId!);
+      res.status(200).json({ orders });
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Error";
+      res.status(400).json({ message });
+    }
+  };
 }

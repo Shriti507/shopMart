@@ -16,16 +16,24 @@ export class OrderService {
       image: i.image ?? "",
     }));
 
-    const totalAmount = items.reduce(
+    const subtotal = items.reduce(
       (s, line) => s + line.price * line.quantity,
       0,
     );
+
+    const shipping = subtotal > 50 || subtotal === 0 ? 0 : 5;
+    const tax = subtotal * 0.1;
+    const totalAmount = subtotal + shipping + tax;
 
     const order = await orderModel.create({
       user: userId,
       society: null,
       items,
+      subtotal,
+      shipping,
+      tax,
       totalAmount,
+      status: "pending"
     });
 
     cart.items = [];
@@ -33,5 +41,8 @@ export class OrderService {
     await cart.save();
 
     return order;
+  }
+  async getUserOrders(userId: string) {
+    return await orderModel.find({ user: userId }).sort({ createdAt: -1 });
   }
 }

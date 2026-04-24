@@ -14,6 +14,7 @@ import {
 import Header from "../components/dashboard/Header";
 import * as shopApi from "../services/shopApi";
 import { useAuth } from "../context/AuthContext";
+import { formatUSD, calculatePrice } from "../utils/price";
 
 const CartPage = () => {
   const navigate = useNavigate();
@@ -82,9 +83,7 @@ const CartPage = () => {
     return null;
   }
 
-  const shipping = totalPrice === 0 || totalPrice > 50 ? 0 : 5.99;
-  const tax = totalPrice * 0.08;
-  const finalTotal = totalPrice === 0 ? 0 : totalPrice + shipping + tax;
+  const { subtotal, shipping, tax, total: finalTotal } = calculatePrice(items);
 
   return (
     <div className="w-full bg-gray-50 flex flex-col flex-grow">
@@ -162,7 +161,7 @@ const CartPage = () => {
                     
                     <div className="flex flex-row sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-4 w-full sm:w-auto">
                       <div className="text-xl font-black text-[#1b2316]">
-                        ${(item.price * item.quantity).toFixed(2)}
+                        {formatUSD(item.price * item.quantity)}
                       </div>
                       <button 
                         onClick={() => remove(item.productId)}
@@ -186,22 +185,22 @@ const CartPage = () => {
               <div className="flex flex-col gap-4 mb-8">
                 <div className="flex justify-between items-center text-gray-500 font-bold text-sm">
                   <span>Subtotal</span>
-                  <span className="text-[#1b2316]">${totalPrice.toFixed(2)}</span>
+                  <span className="text-[#1b2316]">{formatUSD(subtotal)}</span>
                 </div>
                 <div className="flex justify-between items-center text-gray-500 font-bold text-sm">
                   <span className="flex items-center gap-2">
                     Shipping {totalPrice > 50 && <span className="text-xs bg-green-100 text-green-600 px-2 py-0.5 rounded-full font-black uppercase">Free</span>}
                   </span>
-                  <span className="text-[#1b2316]">{shipping === 0 ? "$0.00" : `$${shipping.toFixed(2)}`}</span>
+                  <span className="text-[#1b2316]">{formatUSD(shipping)}</span>
                 </div>
                 <div className="flex justify-between items-center text-gray-500 font-bold text-sm">
                   <span>Estimated Tax</span>
-                  <span className="text-[#1b2316]">${tax.toFixed(2)}</span>
+                  <span className="text-[#1b2316]">{formatUSD(tax)}</span>
                 </div>
                 <div className="h-px bg-gray-100 my-2"></div>
                 <div className="flex justify-between items-center">
                   <span className="text-lg font-black text-[#1b2316]">Total</span>
-                  <span className="text-2xl font-black text-[#dac889]">${finalTotal.toFixed(2)}</span>
+                  <span className="text-2xl font-black text-[#dac889]">{formatUSD(finalTotal)}</span>
                 </div>
               </div>
 
@@ -233,7 +232,7 @@ const CartPage = () => {
             {totalPrice < 50 && items.length > 0 && (
               <div className="mt-4 p-4 bg-[#dac889]/10 border border-[#dac889]/20 rounded-2xl">
                 <p className="text-[#847949] text-xs font-bold leading-relaxed text-center">
-                  Add <span className="font-black text-[#6d633b]">${(50 - totalPrice).toFixed(2)}</span> more to your cart for <span className="font-black text-[#6d633b]">FREE SHIPPING!</span>
+                  Add <span className="font-black text-[#6d633b]">{formatUSD(50 - subtotal)}</span> more to your cart for <span className="font-black text-[#6d633b]">FREE SHIPPING!</span>
                 </p>
               </div>
             )}
