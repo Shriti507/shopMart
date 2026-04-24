@@ -3,7 +3,7 @@ import { Target, Eye, Award, Users, ShieldCheck, Heart } from "lucide-react";
 
 const About = () => {
   return (
-    <div className="w-full bg-[#1b2316] min-h-screen text-gray-100 font-sans selection:bg-[#dac889] selection:text-[#1b2316]">
+    <div className="w-full bg-[#1b2316] flex-grow text-gray-100 font-sans selection:bg-[#dac889] selection:text-[#1b2316]">
       <section className="relative py-32 overflow-hidden border-b border-white/5">
         <div className="absolute top-0 right-[-10%] w-[600px] h-[600px] bg-[#2a3622] rounded-full opacity-20 -translate-y-1/2 blur-3xl"></div>
         <div className="max-w-[1400px] mx-auto px-8 xl:px-12 relative z-10 text-center">

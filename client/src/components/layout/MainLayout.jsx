@@ -14,7 +14,7 @@ const MainLayout = ({ children }) => {
     <div className="flex flex-col min-h-screen">
       <Banner />
       {!shouldHideNavbar && <Navigation />}
-      <main className="flex-grow">{children}</main>
+      <main className="flex-grow flex flex-col">{children}</main>
       <Footer />
     </div>
   );
