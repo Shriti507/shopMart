@@ -10,7 +10,7 @@ const Signup = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phoneNumber: "",
+    phone: "",
     password: "",
     role: "Member",
   });
@@ -33,8 +33,8 @@ const Signup = () => {
         role: formData.role,
         isOnline: false,
       };
-      if (formData.phoneNumber?.trim()) {
-        payload.phoneNumber = formData.phoneNumber.trim();
+      if (formData.phone?.trim()) {
+        payload.phone = formData.phone.trim();
       }
       await register(payload);
       navigate("/user-dashboard", { replace: true });
@@ -123,7 +123,7 @@ const Signup = () => {
           <div className="flex items-center w-full bg-transparent border border-gray-300/60 h-12 rounded-full overflow-hidden pl-5 gap-3 mb-4">
             <Phone size={20} className="text-gray-400" />
             <input
-              name="phoneNumber"
+              name="phone"
               type="tel"
               placeholder="Phone Number (Optional)"
               className="bg-transparent text-gray-700 placeholder-gray-500/80 outline-none text-sm w-full h-full"

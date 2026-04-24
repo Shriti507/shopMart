@@ -97,6 +97,10 @@ export function AuthProvider({ children }) {
       logout,
       cartItemCount,
       refreshCartCount,
+      updateUser: (updatedUser) => {
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+        setUser(updatedUser);
+      },
     }),
     [user, token, login, register, logout, cartItemCount, refreshCartCount],
   );

@@ -12,12 +12,15 @@ const orderItemSchema = new Schema({
 const orderSchema = new Schema<IOrder>({
   user: { type: Schema.Types.ObjectId, ref: "User", required: true },
   society: { type: Schema.Types.ObjectId, ref: "Society", default: null },
-  items: [orderItemSchema], 
+  items: [orderItemSchema],
+  subtotal: { type: Number, required: true },
+  shipping: { type: Number, required: true },
+  tax: { type: Number, required: true },
   totalAmount: { type: Number, required: true },
   status: {
     type: String,
-    enum: ["Pending", "Confirmed", "Out for Delivery", "Delivered", "Cancelled"],
-    default: "Pending"
+    enum: ["pending", "shipped", "delivered", "cancelled"],
+    default: "pending"
   },
   paymentMethod: {
     type: String,

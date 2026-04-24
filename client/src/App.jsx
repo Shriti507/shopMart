@@ -15,11 +15,12 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 // Profile Routes
 import Profile from "./pages/Profile";
-import Addresses from "./pages/Addresses";
-import Orders from "./pages/Orders";
-import Prescriptions from "./pages/Prescriptions";
-import GiftCards from "./pages/GiftCards";
-import Privacy from "./pages/Privacy";
+import Addresses from "./pages/AddressesPage";
+import Orders from "./pages/OrdersPage";
+import Prescriptions from "./pages/PrescriptionsPage";
+import GiftCards from "./pages/GiftCardsPage";
+import Privacy from "./pages/PrivacyPage";
+import EditProfilePage from "./pages/EditProfilePage";
 
 const App = () => {
   return (
@@ -109,7 +110,15 @@ const App = () => {
           }
         />
         <Route
-          path="addresses"
+          path="profile/edit"
+          element={
+            <ProtectedRoute>
+              <EditProfilePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="profile/addresses"
           element={
             <ProtectedRoute>
               <Addresses />
@@ -117,7 +126,7 @@ const App = () => {
           }
         />
         <Route
-          path="orders"
+          path="profile/orders"
           element={
             <ProtectedRoute>
               <Orders />
@@ -125,7 +134,7 @@ const App = () => {
           }
         />
         <Route
-          path="prescriptions"
+          path="profile/prescriptions"
           element={
             <ProtectedRoute>
               <Prescriptions />
@@ -133,7 +142,7 @@ const App = () => {
           }
         />
         <Route
-          path="gift-cards"
+          path="profile/gift-cards"
           element={
             <ProtectedRoute>
               <GiftCards />
@@ -141,7 +150,7 @@ const App = () => {
           }
         />
         <Route
-          path="privacy"
+          path="profile/privacy"
           element={
             <ProtectedRoute>
               <Privacy />

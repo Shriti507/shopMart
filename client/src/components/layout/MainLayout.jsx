@@ -8,14 +8,17 @@ import Banner from "../home/Banner";
 const MainLayout = ({ children }) => {
   const { user } = useAuth();
   const location = useLocation();
-  const shouldHideNavbar = user || location.pathname === "/cart";
+  const hideLayout = 
+    location.pathname.startsWith("/profile") || 
+    location.pathname.startsWith("/user-dashboard") ||
+    location.pathname === "/cart";
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Banner />
-      {!shouldHideNavbar && <Navigation />}
+      {!hideLayout && <Banner />}
+      {!hideLayout && <Navigation />}
       <main className="flex-grow flex flex-col">{children}</main>
-      <Footer />
+      {!hideLayout && <Footer />}
     </div>
   );
 };

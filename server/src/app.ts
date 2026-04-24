@@ -6,6 +6,7 @@ import { Server } from "socket.io";
 import { authRouteInstance } from "./routes/authRoute.js";
 import { cartRouteInstance } from "./routes/cartRoute.js";
 import { orderRouteInstance } from "./routes/orderRoute.js";
+import { userRouteInstance } from "./routes/userRoute.js";
 
 interface App_interface {
   startServer(): void;
@@ -80,6 +81,7 @@ export default class App implements App_interface {
     this.app.use("/api/auth", authRouteInstance.router);
     this.app.use("/api/cart", cartRouteInstance.router);
     this.app.use("/api/order", orderRouteInstance.router);
+    this.app.use("/api/user", userRouteInstance.router);
     this.app.get("/api/health", (req: express.Request, res: express.Response) => {
       res.status(200).json({ status: "ok" });
     });

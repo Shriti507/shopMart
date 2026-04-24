@@ -12,13 +12,11 @@ export interface IOrder extends Document {
   user: Types.ObjectId;
   society: Types.ObjectId | null;
   items: OrderLineItem[];
+  subtotal: number;
+  shipping: number;
+  tax: number;
   totalAmount: number;
-  status:
-    | "Pending"
-    | "Confirmed"
-    | "Out for Delivery"
-    | "Delivered"
-    | "Cancelled";
+  status: "pending" | "shipped" | "delivered" | "cancelled";
   paymentMethod: "COD" | "UPI";
   paymentStatus: "Pending" | "Paid" | "Failed";
   createdAt: Date;
