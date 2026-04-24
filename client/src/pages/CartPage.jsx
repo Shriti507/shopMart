@@ -83,9 +83,9 @@ const CartPage = () => {
     return null;
   }
 
-  const shipping = totalPrice > 50 ? 0 : 5.99;
+  const shipping = totalPrice === 0 || totalPrice > 50 ? 0 : 5.99;
   const tax = totalPrice * 0.08;
-  const finalTotal = totalPrice + shipping + tax;
+  const finalTotal = totalPrice === 0 ? 0 : totalPrice + shipping + tax;
 
   return (
     <div className="w-full bg-gray-50 min-h-screen text-gray-900 font-sans flex flex-col">

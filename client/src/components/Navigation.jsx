@@ -29,12 +29,14 @@ export default function Navigation() {
           >
             Home
           </Link>
-          <Link
-            to="/services"
-            className={`${location.pathname === "/services" ? "text-[#dac889] border-b-2 border-[#dac889] pb-1.5" : "text-gray-500 hover:text-[#dac889]"} transition-all`}
-          >
-            Services
-          </Link>
+          {!isAuthenticated && (
+            <Link
+              to="/services"
+              className={`${location.pathname === "/services" ? "text-[#dac889] border-b-2 border-[#dac889] pb-1.5" : "text-gray-500 hover:text-[#dac889]"} transition-all`}
+            >
+              Services
+            </Link>
+          )}
           <Link
             to="/about"
             className={`${location.pathname === "/about" ? "text-[#dac889] border-b-2 border-[#dac889] pb-1.5" : "text-gray-500 hover:text-[#dac889]"} transition-all`}
