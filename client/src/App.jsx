@@ -94,7 +94,9 @@ const App = () => {
           path="user-dashboard"
           element={
             <ProtectedRoute>
-              <UserDashboard />
+              <MainLayout>
+                <UserDashboard />
+              </MainLayout>
             </ProtectedRoute>
           }
         />

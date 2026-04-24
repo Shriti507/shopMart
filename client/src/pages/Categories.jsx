@@ -49,7 +49,7 @@ const Categories = () => {
   ];
 
   return (
-    <div className="w-full bg-[#1b2316] min-h-screen text-gray-100 font-sans selection:bg-[#D4AF37] selection:text-[#1b2316]">
+    <div className="w-full bg-[#1b2316] flex-grow text-gray-100 font-sans selection:bg-[#D4AF37] selection:text-[#1b2316]">
       <section className="relative py-32 overflow-hidden">
         <div className="absolute top-0 left-[-10%] w-[600px] h-[600px] bg-[#2a3622] rounded-full opacity-20 -translate-y-1/2 blur-3xl"></div>
         <div className="max-w-[1400px] mx-auto px-8 xl:px-12 relative z-10">

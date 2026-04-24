@@ -12,7 +12,6 @@ import {
   Truck
 } from "lucide-react";
 import Header from "../components/dashboard/Header";
-import Footer from "../components/Footer";
 import * as shopApi from "../services/shopApi";
 import { useAuth } from "../context/AuthContext";
 
@@ -88,18 +87,18 @@ const CartPage = () => {
   const finalTotal = totalPrice === 0 ? 0 : totalPrice + shipping + tax;
 
   return (
-    <div className="w-full bg-gray-50 min-h-screen text-gray-900 font-sans flex flex-col">
+    <div className="w-full bg-gray-50 flex flex-col flex-grow">
       <Header />
 
-      <main className="flex-1 max-w-7xl mx-auto w-full px-4 py-12 md:py-16">
+      <main className="flex-grow max-w-7xl mx-auto w-full px-4 py-6 md:py-10">
         <div className="flex items-center gap-2 mb-8">
           <Link to="/user-dashboard" className="text-gray-500 hover:text-[#1b2316] transition-colors flex items-center gap-1 font-bold text-sm">
             <ArrowLeft size={16} /> Continue Shopping
           </Link>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-10">
-          {/* Cart Items List */}
+        <div className="flex flex-col lg:flex-row gap-6">
+          
           <div className="flex-1">
             <h1 className="text-3xl font-black text-[#1b2316] mb-8 tracking-tight flex items-center gap-3">
               Your Cart 
@@ -128,7 +127,7 @@ const CartPage = () => {
               <div className="flex flex-col gap-4">
                 {items.map((item) => (
                   <div key={item.productId} className="bg-white rounded-2xl p-4 sm:p-6 border border-gray-100 shadow-sm flex flex-col sm:flex-row items-center gap-6 group hover:border-[#dac889]/30 transition-all">
-                    {/* Image */}
+                    
                     <div className="w-32 h-32 bg-gray-50 rounded-2xl overflow-hidden flex-shrink-0 border border-gray-50 flex items-center justify-center">
                       <img 
                         src={item.image || "https://placehold.co/400x400?text=Product"} 
@@ -137,7 +136,7 @@ const CartPage = () => {
                       />
                     </div>
 
-                    {/* Details */}
+                   
                     <div className="flex-1 flex flex-col gap-1 w-full text-center sm:text-left">
                       <h3 className="text-lg font-black text-[#1b2316] leading-snug">{item.title}</h3>
                       <p className="text-sm text-[#847949] font-bold">1 unit</p>
@@ -160,7 +159,7 @@ const CartPage = () => {
                       </div>
                     </div>
 
-                    {/* Price & Remove */}
+                    
                     <div className="flex flex-row sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-4 w-full sm:w-auto">
                       <div className="text-xl font-black text-[#1b2316]">
                         ${(item.price * item.quantity).toFixed(2)}
@@ -214,7 +213,7 @@ const CartPage = () => {
                 Checkout <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </button>
 
-              {/* Badges */}
+              
               <div className="mt-8 grid grid-cols-2 gap-4">
                 <div className="flex flex-col items-center gap-2 text-center">
                   <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400">
@@ -242,7 +241,6 @@ const CartPage = () => {
         </div>
       </main>
 
-      <Footer />
     </div>
   );
 };
