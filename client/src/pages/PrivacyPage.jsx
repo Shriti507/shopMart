@@ -1,5 +1,13 @@
 import React from "react";
-import { ChevronLeft, Key, Database, Bell, Trash2, ChevronRight, ShieldCheck } from "lucide-react";
+import {
+  ChevronLeft,
+  Key,
+  Database,
+  Bell,
+  Trash2,
+  ChevronRight,
+  ShieldCheck,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const PrivacyPage = () => {
@@ -10,7 +18,10 @@ const PrivacyPage = () => {
       {/* Header */}
       <div className="bg-white border-b border-gray-100 sticky top-0 z-10 px-4 py-4">
         <div className="max-w-[600px] mx-auto flex items-center gap-4">
-          <button onClick={() => navigate(-1)} className="p-2 hover:bg-gray-50 rounded-full transition-colors">
+          <button
+            onClick={() => navigate(-1)}
+            className="p-2 hover:bg-gray-50 rounded-full transition-colors"
+          >
             <ChevronLeft size={24} className="text-[#1a1a1a]" />
           </button>
           <h1 className="text-xl font-bold text-[#1a1a1a]">Account Privacy</h1>
@@ -23,22 +34,31 @@ const PrivacyPage = () => {
             <ShieldCheck size={24} />
           </div>
           <div>
-            <h2 className="font-bold text-[#1a1a1a] mb-1">Your Data is Secure</h2>
+            <h2 className="font-bold text-[#1a1a1a] mb-1">
+              Your Data is Secure
+            </h2>
             <p className="text-sm text-[#6b7280] leading-relaxed font-medium">
-              ShopSmart uses industry-standard encryption to protect your information. Your privacy is our priority.
+              ShopSmart uses industry-standard encryption to protect your
+              information. Your privacy is our priority.
             </p>
           </div>
         </div>
 
         <div className="bg-white rounded-[24px] overflow-hidden border border-gray-100 shadow-sm">
           <PrivacyRow icon={<Key size={18} />} title="Change Password" />
-          <PrivacyRow icon={<Database size={18} />} title="Manage Personal Data" />
-          <PrivacyRow icon={<Bell size={18} />} title="Notification Preferences" />
-          <PrivacyRow 
-            icon={<Trash2 size={18} />} 
-            title="Delete Account" 
-            textColor="text-red-600" 
-            isLast={true} 
+          <PrivacyRow
+            icon={<Database size={18} />}
+            title="Manage Personal Data"
+          />
+          <PrivacyRow
+            icon={<Bell size={18} />}
+            title="Notification Preferences"
+          />
+          <PrivacyRow
+            icon={<Trash2 size={18} />}
+            title="Delete Account"
+            textColor="text-red-600"
+            isLast={true}
           />
         </div>
 
@@ -51,12 +71,19 @@ const PrivacyPage = () => {
 };
 
 const PrivacyRow = ({ icon, title, textColor = "text-[#1a1a1a]", isLast }) => (
-  <button className={`w-full flex items-center gap-4 p-5 hover:bg-gray-50 transition-colors group ${!isLast ? 'border-b border-gray-50' : ''}`}>
-    <div className={`w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center ${textColor === 'text-red-600' ? 'text-red-500 bg-red-50' : 'text-[#1f2d1f]'} border border-gray-100`}>
+  <button
+    className={`w-full flex items-center gap-4 p-5 hover:bg-gray-50 transition-colors group ${!isLast ? "border-b border-gray-50" : ""}`}
+  >
+    <div
+      className={`w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center ${textColor === "text-red-600" ? "text-red-500 bg-red-50" : "text-[#1f2d1f]"} border border-gray-100`}
+    >
       {icon}
     </div>
     <span className={`font-bold ${textColor}`}>{title}</span>
-    <ChevronRight size={18} className="ml-auto text-gray-300 group-hover:translate-x-1 transition-transform" />
+    <ChevronRight
+      size={18}
+      className="ml-auto text-gray-300 group-hover:translate-x-1 transition-transform"
+    />
   </button>
 );
 

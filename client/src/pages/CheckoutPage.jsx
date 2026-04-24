@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/dashboard/Header";
 import * as shopApi from "../services/shopApi";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/useAuth";
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -41,7 +41,9 @@ const CheckoutPage = () => {
     <div className="w-full bg-gray-100 flex flex-col flex-grow">
       <Header />
       <main className="max-w-lg mx-auto w-full px-6 py-6 md:py-10 flex-grow">
-        <h1 className="text-2xl font-extrabold text-[#1b2316] mb-4">Checkout</h1>
+        <h1 className="text-2xl font-extrabold text-[#1b2316] mb-4">
+          Checkout
+        </h1>
         <p className="text-gray-600 text-sm mb-8">
           Pay on delivery (COD). Click below to confirm your order using your
           current cart.

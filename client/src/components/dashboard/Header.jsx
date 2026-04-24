@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Search, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../context/useAuth";
 
 const Header = ({ cartCount: cartCountProp }) => {
   const { cartItemCount } = useAuth();

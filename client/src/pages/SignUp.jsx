@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import groceryImage from "../assets/grocery.jpg";
 import { CircleUserRound, Mail, Phone, Lock, Users } from "lucide-react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/useAuth";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -39,12 +39,12 @@ const Signup = () => {
       await register(payload);
       navigate("/user-dashboard", { replace: true });
     } catch (err) {
-      const message = 
-        err.data?.message || 
-        err.response?.data?.message || 
-        err.message || 
-        "";
-      if (message.includes("E11000") || message.includes("Phone number already exists")) {
+      const message =
+        err.data?.message || err.response?.data?.message || err.message || "";
+      if (
+        message.includes("E11000") ||
+        message.includes("Phone number already exists")
+      ) {
         setError("Phone number already exists");
       } else {
         setError(message || "Registration failed");

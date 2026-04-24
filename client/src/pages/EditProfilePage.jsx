@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { ChevronLeft, User, Phone, Save, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/useAuth";
 import { updateProfile } from "../services/shopApi";
 
 const EditProfilePage = () => {
   const navigate = useNavigate();
   const { user, updateUser } = useAuth();
-  
+
   const [formData, setFormData] = useState({
     name: user?.name || "",
     phone: user?.phone || "",
@@ -25,7 +25,7 @@ const EditProfilePage = () => {
     e.preventDefault();
     setLoading(true);
     setError("");
-    
+
     try {
       const response = await updateProfile(formData);
       updateUser(response.user);
@@ -43,7 +43,10 @@ const EditProfilePage = () => {
       {/* Header */}
       <div className="bg-white border-b border-gray-100 sticky top-0 z-10 px-4 py-4">
         <div className="max-w-[600px] mx-auto flex items-center gap-4">
-          <button onClick={() => navigate(-1)} className="p-2 hover:bg-gray-50 rounded-full transition-colors">
+          <button
+            onClick={() => navigate(-1)}
+            className="p-2 hover:bg-gray-50 rounded-full transition-colors"
+          >
             <ChevronLeft size={24} className="text-[#1a1a1a]" />
           </button>
           <h1 className="text-xl font-bold text-[#1a1a1a]">Edit Profile</h1>
@@ -58,7 +61,7 @@ const EditProfilePage = () => {
                 {error}
               </div>
             )}
-            
+
             {success && (
               <div className="bg-emerald-50 text-emerald-600 p-4 rounded-2xl text-sm font-bold border border-emerald-100 text-center">
                 Profile updated successfully!
@@ -66,9 +69,14 @@ const EditProfilePage = () => {
             )}
 
             <div className="flex flex-col gap-2">
-              <label className="text-xs font-bold text-[#6b7280] ml-1 uppercase tracking-wider">Full Name</label>
+              <label className="text-xs font-bold text-[#6b7280] ml-1 uppercase tracking-wider">
+                Full Name
+              </label>
               <div className="flex items-center bg-gray-50 border border-gray-100 rounded-2xl px-4 py-4 focus-within:border-[#1f2d1f] transition-colors group">
-                <User size={20} className="text-gray-400 mr-3 group-focus-within:text-[#1f2d1f] transition-colors" />
+                <User
+                  size={20}
+                  className="text-gray-400 mr-3 group-focus-within:text-[#1f2d1f] transition-colors"
+                />
                 <input
                   type="text"
                   name="name"
@@ -82,9 +90,14 @@ const EditProfilePage = () => {
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-xs font-bold text-[#6b7280] ml-1 uppercase tracking-wider">Phone Number</label>
+              <label className="text-xs font-bold text-[#6b7280] ml-1 uppercase tracking-wider">
+                Phone Number
+              </label>
               <div className="flex items-center bg-gray-50 border border-gray-100 rounded-2xl px-4 py-4 focus-within:border-[#1f2d1f] transition-colors group">
-                <Phone size={20} className="text-gray-400 mr-3 group-focus-within:text-[#1f2d1f] transition-colors" />
+                <Phone
+                  size={20}
+                  className="text-gray-400 mr-3 group-focus-within:text-[#1f2d1f] transition-colors"
+                />
                 <input
                   type="tel"
                   name="phone"

@@ -3,7 +3,7 @@ import { Plus, Loader2, AlertCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { fetchProducts } from "../../services/api";
 import * as shopApi from "../../services/shopApi";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../context/useAuth";
 import { formatUSD } from "../../utils/price";
 
 const ProductSection = ({ title }) => {

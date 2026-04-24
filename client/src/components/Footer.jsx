@@ -270,7 +270,10 @@ const Footer = () => {
             <Link to="/" className="hover:text-[#1b2316] transition-colors">
               Terms
             </Link>
-            <Link to="/privacy" className="hover:text-[#1b2316] transition-colors">
+            <Link
+              to="/privacy"
+              className="hover:text-[#1b2316] transition-colors"
+            >
               Privacy
             </Link>
             <Link to="/" className="hover:text-[#1b2316] transition-colors">

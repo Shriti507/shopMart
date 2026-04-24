@@ -1,15 +1,15 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+// import { useAuth } from "../../context/useAuth";
 import Navigation from "../Navigation";
 import Footer from "../Footer";
 import Banner from "../home/Banner";
 
 const MainLayout = ({ children }) => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
   const location = useLocation();
-  const hideLayout = 
-    location.pathname.startsWith("/profile") || 
+  const hideLayout =
+    location.pathname.startsWith("/profile") ||
     location.pathname.startsWith("/user-dashboard") ||
     location.pathname === "/cart";
 
