@@ -3,6 +3,7 @@ import * as shopApi from "../services/shopApi";
 import { AuthContext } from "./AuthContext.js";
 
 export function AuthProvider({ children }) {
+  console.log("AuthProvider initializing...");
   const [user, setUser] = useState(() => {
     try {
       const raw = localStorage.getItem("user");
