@@ -16,8 +16,4 @@ export interface CartDocument extends Document {
   user: Types.ObjectId;
   items: CartLineItem[];
   totalPrice: number;
-export interface CartDocument extends Document {
-  user: Types.ObjectId;
-  items: CartItem[];
-  totalPrice: number;
 }
