@@ -5,6 +5,8 @@ import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/AuthProvider";
 
+console.log("Frontend App Mounting [v4]");
+
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <AuthProvider>
