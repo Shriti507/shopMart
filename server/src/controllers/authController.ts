@@ -1,6 +1,17 @@
 import { Request, Response } from "express";
 import { AuthService } from "../services/authService.js";
 import jwt from "jsonwebtoken";
+import { User } from "../utils/user.interface.js";
+import { Society } from "../utils/society.interface.js";
+
+interface MongoError {
+  code?: number;
+  keyPattern?: Record<string, number>;
+}
+
+const isMongoError = (err: unknown): err is MongoError => {
+  return typeof err === "object" && err !== null && "code" in err;
+};
 
 export default class AuthController {
   private authService: AuthService;
@@ -21,7 +32,7 @@ export default class AuthController {
 
   public registerUser = async (req: Request, res: Response): Promise<void> => {
     try {
-      const userData = req.body;
+      const userData = req.body as User;
       const newUser = await this.authService.createUser(userData);
       const token = this.generateToken(newUser._id.toString());
 
@@ -35,8 +46,8 @@ export default class AuthController {
         },
         token: token,
       });
-    } catch (err: any) {
-      if (err.code === 11000) {
+    } catch (err: unknown) {
+      if (isMongoError(err) && err.code === 11000 && err.keyPattern) {
         const field = Object.keys(err.keyPattern)[0];
         res.status(400).json({ 
           message: `${field.charAt(0).toUpperCase() + field.slice(1)} already exists` 
@@ -49,20 +60,17 @@ export default class AuthController {
     }
   };
 
-  public registerSociety = async (
-    req: Request,
-    res: Response,
-  ): Promise<void> => {
+  public registerSociety = async (req: Request, res: Response): Promise<void> => {
     try {
-      const societyData = req.body;
+      const societyData = req.body as Society;
       const newSociety = await this.authService.createSociety(societyData);
 
       res.status(201).json({
         message: "Society created successfully",
         society: newSociety,
       });
-    } catch (err: any) {
-      if (err.code === 11000) {
+    } catch (err: unknown) {
+      if (isMongoError(err) && err.code === 11000 && err.keyPattern) {
         const field = Object.keys(err.keyPattern)[0];
         res.status(400).json({ 
           message: `Society ${field} already exists` 
@@ -77,7 +85,7 @@ export default class AuthController {
 
   public loginUser = async (req: Request, res: Response): Promise<void> => {
     try {
-      const { email, password } = req.body;
+      const { email, password } = req.body as Record<string, string>;
       const user = await this.authService.loginUser(email, password);
       const token = this.generateToken(user._id.toString());
 
@@ -93,7 +101,7 @@ export default class AuthController {
         },
         token: token,
       });
-    } catch (err) {
+    } catch (err: unknown) {
       const errorMessage =
         err instanceof Error ? err.message : "An error occurred";
       res.status(401).json({ message: errorMessage });
@@ -102,7 +110,7 @@ export default class AuthController {
 
   public loginSociety = async (req: Request, res: Response): Promise<void> => {
     try {
-      const { code } = req.body;
+      const { code } = req.body as { code: string };
       const society = await this.authService.loginSociety(code);
       const token = this.generateToken(society._id.toString());
 
@@ -111,10 +119,12 @@ export default class AuthController {
         society,
         token,
       });
-    } catch (err) {
+    } catch (err: unknown) {
       const errorMessage =
         err instanceof Error ? err.message : "An error occurred";
       res.status(401).json({ message: errorMessage });
     }
   };
 }
+
+
