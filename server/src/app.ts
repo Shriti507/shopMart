@@ -36,7 +36,9 @@ export default class App implements App_interface {
     this.connectDatabase();
     this.initializeRoutes();
     this.initializeSocket();
+    console.log("NEW BUILD VERSION [v4]");
   }
+
 
   private initializeMiddleware(): void {
     this.app.use(
