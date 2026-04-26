@@ -33,7 +33,7 @@ export class OrderService {
       shipping,
       tax,
       totalAmount,
-      status: "pending"
+      status: "pending",
     });
 
     cart.items = [];

@@ -82,9 +82,12 @@ export default class App implements App_interface {
     this.app.use("/api/cart", cartRouteInstance.router);
     this.app.use("/api/order", orderRouteInstance.router);
     this.app.use("/api/user", userRouteInstance.router);
-    this.app.get("/api/health", (req: express.Request, res: express.Response) => {
-      res.status(200).json({ status: "ok" });
-    });
+    this.app.get(
+      "/api/health",
+      (req: express.Request, res: express.Response) => {
+        res.status(200).json({ status: "ok" });
+      },
+    );
     console.log("Routes initialized.");
   }
 

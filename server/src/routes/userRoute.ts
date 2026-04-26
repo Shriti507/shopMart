@@ -11,8 +11,16 @@ export default class UserRoute {
     this.router.put("/profile", requireAuth, this.controller.updateProfile);
     this.router.get("/addresses", requireAuth, this.controller.getAddresses);
     this.router.post("/addresses", requireAuth, this.controller.addAddress);
-    this.router.put("/addresses/:id", requireAuth, this.controller.updateAddress);
-    this.router.delete("/addresses/:id", requireAuth, this.controller.deleteAddress);
+    this.router.put(
+      "/addresses/:id",
+      requireAuth,
+      this.controller.updateAddress,
+    );
+    this.router.delete(
+      "/addresses/:id",
+      requireAuth,
+      this.controller.deleteAddress,
+    );
   }
 }
 

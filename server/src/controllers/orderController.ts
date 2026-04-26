@@ -23,7 +23,10 @@ export default class OrderController {
     }
   };
 
-  public getOrders = async (req: AuthedRequest, res: Response): Promise<void> => {
+  public getOrders = async (
+    req: AuthedRequest,
+    res: Response,
+  ): Promise<void> => {
     try {
       const orders = await this.orderService.getUserOrders(req.userId!);
       res.status(200).json({ orders });

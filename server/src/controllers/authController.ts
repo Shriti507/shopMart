@@ -49,8 +49,8 @@ export default class AuthController {
     } catch (err: unknown) {
       if (isMongoError(err) && err.code === 11000 && err.keyPattern) {
         const field = Object.keys(err.keyPattern)[0];
-        res.status(400).json({ 
-          message: `${field.charAt(0).toUpperCase() + field.slice(1)} already exists` 
+        res.status(400).json({
+          message: `${field.charAt(0).toUpperCase() + field.slice(1)} already exists`,
         });
         return;
       }
@@ -60,7 +60,10 @@ export default class AuthController {
     }
   };
 
-  public registerSociety = async (req: Request, res: Response): Promise<void> => {
+  public registerSociety = async (
+    req: Request,
+    res: Response,
+  ): Promise<void> => {
     try {
       const societyData = req.body as Society;
       const newSociety = await this.authService.createSociety(societyData);
@@ -72,8 +75,8 @@ export default class AuthController {
     } catch (err: unknown) {
       if (isMongoError(err) && err.code === 11000 && err.keyPattern) {
         const field = Object.keys(err.keyPattern)[0];
-        res.status(400).json({ 
-          message: `Society ${field} already exists` 
+        res.status(400).json({
+          message: `Society ${field} already exists`,
         });
         return;
       }
@@ -126,5 +129,3 @@ export default class AuthController {
     }
   };
 }
-
-

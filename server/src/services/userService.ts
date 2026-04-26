@@ -2,17 +2,19 @@ import { userModel } from "../models/user.schema.js";
 import { Address, UserDocument } from "../utils/user.interface.js";
 import { Types } from "mongoose";
 
-
 export class UserService {
   async getProfile(userId: string): Promise<UserDocument | null> {
     return await userModel.findById(userId);
   }
 
-  async updateProfile(userId: string, data: { name?: string; phone?: string }): Promise<UserDocument | null> {
+  async updateProfile(
+    userId: string,
+    data: { name?: string; phone?: string },
+  ): Promise<UserDocument | null> {
     return await userModel.findByIdAndUpdate(
       userId,
       { $set: data },
-      { new: true }
+      { new: true },
     );
   }
 
@@ -36,12 +38,16 @@ export class UserService {
     return user.addresses;
   }
 
-  async updateAddress(userId: string, addressId: string, addressData: Partial<Address>): Promise<Address[]> {
+  async updateAddress(
+    userId: string,
+    addressId: string,
+    addressData: Partial<Address>,
+  ): Promise<Address[]> {
     const user = await userModel.findById(userId);
     if (!user) throw new Error("User not found");
 
     const addressIndex = user.addresses.findIndex(
-      (a) => a._id?.toString() === addressId
+      (a) => a._id?.toString() === addressId,
     );
     if (addressIndex === -1) throw new Error("Address not found");
 
@@ -50,8 +56,11 @@ export class UserService {
     }
 
     const currentAddress = user.addresses[addressIndex];
-    user.addresses[addressIndex] = { ...currentAddress, ...addressData } as Address;
-    
+    user.addresses[addressIndex] = {
+      ...currentAddress,
+      ...addressData,
+    } as Address;
+
     await user.save();
     return user.addresses;
   }
@@ -61,7 +70,7 @@ export class UserService {
     if (!user) throw new Error("User not found");
 
     user.addresses = user.addresses.filter(
-      (a) => a._id?.toString() !== addressId
+      (a) => a._id?.toString() !== addressId,
     ) as unknown as Types.DocumentArray<Address>;
 
     // if the user deleted the default address, make the first one default
@@ -72,6 +81,4 @@ export class UserService {
     await user.save();
     return user.addresses;
   }
-
 }
-

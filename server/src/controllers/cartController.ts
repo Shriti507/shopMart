@@ -58,7 +58,9 @@ export default class CartController {
     try {
       const { productId, quantity } = req.body as Record<string, unknown>;
       if (productId === undefined || quantity === undefined) {
-        res.status(400).json({ message: "productId and quantity are required" });
+        res
+          .status(400)
+          .json({ message: "productId and quantity are required" });
         return;
       }
       const cart = await this.cartService.updateItemQuantity(
