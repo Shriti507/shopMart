@@ -24,55 +24,21 @@ import EditProfilePage from "./pages/EditProfilePage";
 
 const App = () => {
   return (
-    <>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <MainLayout>
-              <Home />
-            </MainLayout>
-          }
-        />
-        <Route
-          path="about"
-          element={
-            <MainLayout>
-              <About />
-            </MainLayout>
-          }
-        />
-        <Route
-          path="contact"
-          element={
-            <MainLayout>
-              <Contact />
-            </MainLayout>
-          }
-        />
-        <Route
-          path="services"
-          element={
-            <MainLayout>
-              <Services />
-            </MainLayout>
-          }
-        />
-        <Route
-          path="categories"
-          element={
-            <MainLayout>
-              <Categories />
-            </MainLayout>
-          }
-        />
+    <Routes>
+      {/* Public and Protected routes using MainLayout */}
+      <Route element={<MainLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="services" element={<Services />} />
+        <Route path="categories" element={<Categories />} />
+        
+        {/* Protected routes within MainLayout */}
         <Route
           path="/cart"
           element={
             <ProtectedRoute>
-              <MainLayout>
-                <CartPage />
-              </MainLayout>
+              <CartPage />
             </ProtectedRoute>
           }
         />
@@ -80,29 +46,28 @@ const App = () => {
           path="/checkout"
           element={
             <ProtectedRoute>
-              <MainLayout>
-                <CheckoutPage />
-              </MainLayout>
+              <CheckoutPage />
             </ProtectedRoute>
           }
         />
-
-        <Route path="login" element={<Login />} />
-        <Route path="signUp" element={<SignUp />} />
-
-        {/* Protected Dashboard and Profile Routes */}
         <Route
           path="user-dashboard"
           element={
             <ProtectedRoute>
-              <MainLayout>
-                <UserDashboard />
-              </MainLayout>
+              <UserDashboard />
             </ProtectedRoute>
           }
         />
+      </Route>
+
+      {/* Auth routes outside of MainLayout */}
+      <Route path="login" element={<Login />} />
+      <Route path="signUp" element={<SignUp />} />
+
+      {/* Profile Routes - potentially using a different layout or no layout */}
+      <Route path="profile">
         <Route
-          path="profile"
+          index
           element={
             <ProtectedRoute>
               <Profile />
@@ -110,7 +75,7 @@ const App = () => {
           }
         />
         <Route
-          path="profile/edit"
+          path="edit"
           element={
             <ProtectedRoute>
               <EditProfilePage />
@@ -118,7 +83,7 @@ const App = () => {
           }
         />
         <Route
-          path="profile/addresses"
+          path="addresses"
           element={
             <ProtectedRoute>
               <Addresses />
@@ -126,7 +91,7 @@ const App = () => {
           }
         />
         <Route
-          path="profile/orders"
+          path="orders"
           element={
             <ProtectedRoute>
               <Orders />
@@ -134,7 +99,7 @@ const App = () => {
           }
         />
         <Route
-          path="profile/prescriptions"
+          path="prescriptions"
           element={
             <ProtectedRoute>
               <Prescriptions />
@@ -142,7 +107,7 @@ const App = () => {
           }
         />
         <Route
-          path="profile/gift-cards"
+          path="gift-cards"
           element={
             <ProtectedRoute>
               <GiftCards />
@@ -150,16 +115,17 @@ const App = () => {
           }
         />
         <Route
-          path="profile/privacy"
+          path="privacy"
           element={
             <ProtectedRoute>
               <Privacy />
             </ProtectedRoute>
           }
         />
-      </Routes>
-    </>
+      </Route>
+    </Routes>
   );
 };
+
 
 export default App;

@@ -13,7 +13,7 @@ const Categories = () => {
     {
       title: "Fresh Vegetables",
       image:
-        "https://images.unsplash.com/photo-1566385101042-1a000c1268c4?auto=format&fit=crop&q=80&w=800",
+        "https://images.unsplash.com/photo-1518843875459-f738682238a6?auto=format&fit=crop&w=800&q=80",
       count: "120+ Items",
     },
     {
@@ -43,7 +43,7 @@ const Categories = () => {
     {
       title: "Beverages",
       image:
-        "https://images.unsplash.com/photo-1625772299847-2c1b7405ba8c?auto=format&fit=crop&q=80&w=800",
+       "https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=800&q=80",
       count: "110+ Items",
     },
   ];
