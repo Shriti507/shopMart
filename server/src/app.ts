@@ -80,7 +80,7 @@ export default class App implements App_interface {
   public initializeRoutes(): void {
     this.app.get("/", (req: express.Request, res: express.Response) => {
       res.send("Server is running ");
-    }); 
+    });
     this.app.use("/api/auth", authRouteInstance.router);
     this.app.use("/api/cart", cartRouteInstance.router);
     this.app.use("/api/order", orderRouteInstance.router);

@@ -32,7 +32,7 @@ const App = () => {
         <Route path="contact" element={<Contact />} />
         <Route path="services" element={<Services />} />
         <Route path="categories" element={<Categories />} />
-        
+
         {/* Protected routes within MainLayout */}
         <Route
           path="/cart"
@@ -126,6 +126,5 @@ const App = () => {
     </Routes>
   );
 };
-
 
 export default App;

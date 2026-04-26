@@ -10,10 +10,10 @@ import Banner from "../home/Banner";
  */
 const MainLayout = () => {
   const location = useLocation();
-  
+
   // Logic to determine if we are on the checkout page
   const isCheckout = location.pathname === "/checkout";
-  
+
   // Logic to hide layout elements for specific dashboard/profile routes
   const hideGlobalLayout =
     location.pathname.startsWith("/profile") ||
@@ -24,10 +24,10 @@ const MainLayout = () => {
     <div className="flex flex-col min-h-screen bg-gray-50">
       {/* Banner acts as the SearchHeader/Top announcement bar */}
       {!hideGlobalLayout && <Banner />}
-      
+
       {/* Navbar (Navigation) is hidden on checkout for a focused experience */}
       {!hideGlobalLayout && !isCheckout && <Navigation />}
-      
+
       <main className="flex-grow">
         <Outlet />
       </main>
@@ -38,6 +38,4 @@ const MainLayout = () => {
   );
 };
 
-
 export default MainLayout;
-

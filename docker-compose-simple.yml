@@ -1,7 +1,7 @@
 services:
   client:
     image: shriti88/shopsmart-client:v1
-    ports: 
+    ports:
       - "4000:5173"
 
   server:
