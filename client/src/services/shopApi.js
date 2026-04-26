@@ -4,6 +4,8 @@ export const setUnauthorizedListener = (fn) => {
   unauthorizedListener = fn;
 };
 
+const API_URL = import.meta.env.VITE_API_URL || "";
+
 const apiFetch = async (path, options = {}) => {
   const token = localStorage.getItem("token");
   const headers = {
@@ -13,16 +15,29 @@ const apiFetch = async (path, options = {}) => {
   if (token) {
     headers.Authorization = `Bearer ${token}`;
   }
-  const res = await fetch(path, { ...options, headers });
+
+  const fullUrl = `${API_URL}${path}`;
+  
+  console.log(`[API] Calling: ${fullUrl}`);
+
+  let res;
+  try {
+    res = await fetch(fullUrl, { ...options, headers });
+  } catch (err) {
+    console.error("Network error:", err);
+    throw new Error("Unable to connect to the server. Please check your internet connection.");
+  }
+
   const text = await res.text();
   let data = null;
   try {
     data = text ? JSON.parse(text) : null;
-  } catch {
+  } catch (err) {
     data = { message: text || "Invalid response" };
   }
   if (!res.ok) {
     const err = new Error(data?.message || res.statusText);
+
     err.status = res.status;
     err.data = data;
     if (res.status === 401) {
@@ -33,6 +48,7 @@ const apiFetch = async (path, options = {}) => {
   }
   return data;
 };
+
 
 export const register = (body) =>
   apiFetch("/api/auth/register", {
