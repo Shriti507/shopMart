@@ -4,7 +4,6 @@ export const setUnauthorizedListener = (fn) => {
   unauthorizedListener = fn;
 };
 
-const API_URL = import.meta.env.VITE_API_URL || "";
 
 const apiFetch = async (path, options = {}) => {
   const token = localStorage.getItem("token");
@@ -16,13 +15,12 @@ const apiFetch = async (path, options = {}) => {
     headers.Authorization = `Bearer ${token}`;
   }
 
-  const fullUrl = `${API_URL}${path}`;
-  
-  console.log(`[API] Calling: ${fullUrl}`);
+  console.log(`[API] Calling: ${path}`);
 
   let res;
   try {
-    res = await fetch(fullUrl, { ...options, headers });
+    res = await fetch(path, { ...options, headers });
+
   } catch (err) {
     console.error("Network error:", err);
     throw new Error("Unable to connect to the server. Please check your internet connection.");
@@ -51,70 +49,75 @@ const apiFetch = async (path, options = {}) => {
 
 
 export const register = (body) =>
-  apiFetch("/api/auth/register", {
+  apiFetch(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
     method: "POST",
     body: JSON.stringify(body),
   });
 
 export const login = (body) =>
-  apiFetch("/api/auth/login", {
+  apiFetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
     method: "POST",
     body: JSON.stringify(body),
   });
 
-export const getCart = () => apiFetch("/api/cart");
+
+export const getCart = () => apiFetch(`${import.meta.env.VITE_API_URL}/api/cart`);
 
 export const addToCart = (body) =>
-  apiFetch("/api/cart/add", {
+  apiFetch(`${import.meta.env.VITE_API_URL}/api/cart/add`, {
     method: "POST",
     body: JSON.stringify(body),
   });
 
 export const updateCartItem = (productId, quantity) =>
-  apiFetch("/api/cart/item", {
+  apiFetch(`${import.meta.env.VITE_API_URL}/api/cart/item`, {
     method: "PUT",
     body: JSON.stringify({ productId, quantity }),
   });
 
+
 export const removeCartItem = (productId) =>
-  apiFetch(`/api/cart/item/${encodeURIComponent(productId)}`, {
+  apiFetch(`${import.meta.env.VITE_API_URL}/api/cart/item/${encodeURIComponent(productId)}`, {
     method: "DELETE",
   });
 
 export const clearCart = () =>
-  apiFetch("/api/cart", {
+  apiFetch(`${import.meta.env.VITE_API_URL}/api/cart`, {
     method: "DELETE",
   });
 
+
 export const createOrder = () =>
-  apiFetch("/api/order/create", {
+  apiFetch(`${import.meta.env.VITE_API_URL}/api/order/create`, {
     method: "POST",
     body: JSON.stringify({}),
   });
 
-export const getOrders = () => apiFetch("/api/order");
+export const getOrders = () => apiFetch(`${import.meta.env.VITE_API_URL}/api/order`);
 
 // User Profile
-export const getProfile = () => apiFetch("/api/user/profile");
+export const getProfile = () => apiFetch(`${import.meta.env.VITE_API_URL}/api/user/profile`);
 export const updateProfile = (body) =>
-  apiFetch("/api/user/profile", {
+  apiFetch(`${import.meta.env.VITE_API_URL}/api/user/profile`, {
     method: "PUT",
     body: JSON.stringify(body),
   });
 
+
 // Addresses
-export const getAddresses = () => apiFetch("/api/user/addresses");
+export const getAddresses = () => apiFetch(`${import.meta.env.VITE_API_URL}/api/user/addresses`);
 export const addAddress = (body) =>
-  apiFetch("/api/user/addresses", {
+  apiFetch(`${import.meta.env.VITE_API_URL}/api/user/addresses`, {
     method: "POST",
     body: JSON.stringify(body),
   });
 export const updateAddress = (id, body) =>
-  apiFetch(`/api/user/addresses/${id}`, {
+  apiFetch(`${import.meta.env.VITE_API_URL}/api/user/addresses/${id}`, {
     method: "PUT",
     body: JSON.stringify(body),
   });
 export const deleteAddress = (id) =>
-  apiFetch(`/api/user/addresses/${id}`, {
+  apiFetch(`${import.meta.env.VITE_API_URL}/api/user/addresses/${id}`, {
     method: "DELETE",
   });
+
