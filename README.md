@@ -1,45 +1,82 @@
-# shopSmart
+# ShopSmart 🛒
+### Simple & Efficient E-commerce Platform
 
-A modern, fast, and high-performance grocery delivery platform modeled after Blinkit.
+**ShopSmart** is a streamlined e-commerce application designed for a smooth and intuitive shopping experience. It allows users to browse products across various categories, manage a personal shopping cart with full CRUD (Create, Read, Update, Delete) functionality, and process orders.
 
-## 🏗 Architecture
+Built with the MERN stack, it prioritizes performance, clean UI, and ease of use.
 
-This project is built using a decoupled client-server architecture:
+---
 
-- **Frontend (Client):** Built with React + Vite, styled with Tailwind CSS, utilizing `lucide-react` for iconography. Automated tests running on `vitest` and Playwright for E2E flows.
-- **Backend (Server):** Node.js and Express running alongside TypeScript. Tested with `jest` and `supertest`.
+## Key Features
 
-## 🚀 Setup & Workflow
+- **Product Browsing**: Explore a wide range of products categorized for easy navigation.
+- **Cart Management (CRUD)**:
+  - **Add**: Seamlessly add items to your shopping cart.
+  - **Read**: View all items in your cart with real-time price calculations.
+  - **Update**: Adjust quantities or modify item selections directly from the cart.
+  - **Delete**: Remove unwanted items or clear the entire cart in one click.
+- **User Authentication**: Secure Sign Up and Login system powered by JWT.
+- **Order History**: Track your previous purchases and order status from a dedicated dashboard.
+- **Responsive Design**: Fully optimized for both desktop and mobile viewing.
 
-Follow these steps to rapidly boot up the local dev environment.
+---
 
-1. **Clone the repository**
-2. **Setup Environment Definitions**
-   Configure your local `.env` variables (e.g. `PORT=5000` in the `/server` directory).
-3. **Boot Application**
-   Run the idempotent startup script from the root folder:
-   ```bash
-   ./automation.sh
-   ```
-   _This automatically frees port 5000/5173 and cleanly spins up both node microservices._
+## Technical Stack
 
-## ✅ Software Engineering & Testing Specs
+- **Frontend (Web):** [React](https://react.dev/) + [Vite](https://vitejs.dev/) 
+- **Backend:** [Node.js](https://nodejs.org/) + [Express](https://expressjs.com/)
+- **Database:** [MongoDB](https://www.mongodb.com/) (Mongoose)
 
-- **Unit Testing**: Enforced at the component level `client/src/components/dashboard/__tests__`.
-- **E2E Testing**: Real browser automation using `@playwright/test` mapped to `client/tests/e2e/home.spec.js`.
-- **Integration Testing**: Server routes modeled securely via `supertest`.
 
-## 📦 Deployment Decisions
+---
 
-- All branches checked against Github Actions CI checking lint and syntax validity.
-- The `deploy.yml` workflow natively supports AWS EC2 integration targeting specific AWS environments via GitHub Secrets injection (`EC2_HOST`, `EC2_USERNAME`, `EC2_SSH_KEY`).
+##  Project Structure
 
-## 📚 Commit Standards
+```text
+├── client/              # React frontend (Vite)
+│   ├── src/
+│   │   ├── components/  # UI components (Header, Banner, Hero)
+│   │   ├── context/     # Auth and Cart state management
+│   │   ├── pages/       # Views (Home, Categories, Cart, Dashboard)
+│   │   └── services/    # API integration (shopApi.js)
+├── server/              # Node.js backend
+│   ├── src/
+│   │   ├── controllers/ # Request handlers (Auth, Cart, Order)
+│   │   ├── models/      # MongoDB Schemas
+│   │   ├── routes/      # API Endpoints
+│   │   └── server.ts    # App entry point
+└── README.md
+```
 
-We strictly follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
-Examples:
+---
 
-- `feat: migrate product array to external DummyJSON API integration`
-- `test: implement playwright web framework`
-- `fix: resolve crashing hook in navigation bar`
-  _Do not push bulk vague commits (like `feat: modify yml`)._
+## Getting Started
+
+### Prerequisites
+- Node.js (v18+)
+- MongoDB (Atlas or Local)
+
+### 1. Backend Setup
+```bash
+cd server
+npm install
+npm run dev
+```
+
+### 2. Frontend Setup
+```bash
+cd client
+npm install
+npm run dev
+```
+
+---
+
+##  Deployment
+- **Backend:** Deployed on **AWS EC2** (using PM2/Docker).
+- **Frontend:** Built for production and hosted on **AWS S3**.
+- **CORS:** Configured to allow secure communication between the S3 origin and EC2 backend.
+
+---
+
+
