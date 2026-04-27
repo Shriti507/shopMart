@@ -21,7 +21,7 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
+          script: | 
             # Clone if not exists
             if [ ! -d "/var/www/shopSmart" ]; then
               git clone https://github.com/Shriti507/shopSmart.git /var/www/shopSmart

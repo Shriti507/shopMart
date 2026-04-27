@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test("has basic dashboard rendering constraints", async ({ page }) => {
   await page.goto("/user-dashboard");
 
-  // Verify Navbar exists
+  // Verify if navbar exists
   await expect(page.locator("header")).toBeVisible();
 
   // Verify generic brand wording or hero catchphrase exists

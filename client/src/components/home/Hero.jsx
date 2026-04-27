@@ -45,7 +45,6 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col xl:flex-row gap-8 items-start xl:items-center w-full mt-4">
-            {/* Happy Customer */}
             <div className="flex items-center gap-5 bg-[#252f1e]/80 backdrop-blur-md border border-white/5 px-6 py-5 rounded-2xl shadow-xl w-fit shrink-0">
               <div className="flex -space-x-3 shrink-0">
                 <img
