@@ -75,7 +75,7 @@ const Hero = () => {
                       size={16}
                       className="fill-[#dac889] text-[#dac889] mr-1"
                     />
-                    4.5
+                    4.4
                   </div>
                   <div className="text-gray-400 text-xs leading-tight">
                     (12.5k
